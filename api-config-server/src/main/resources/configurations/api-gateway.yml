@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: api-rest-usuario
+          uri: lb://API-REST-USUARIO
+          predicates:
+            - Path=/api/usuarios/**
+
+        - id: api-rest-conferencias
+          uri: lb://API-REST-CONFERENCIAS
+          predicates:
+            - Path=/api/conferencias/**
+
+        - id: api-rest-articulos
+          uri: lb://API-REST-ARTICULOS
+          predicates:
+            - Path=/api/articulos/**
+
+        - id: api-rest-revisiones
+          uri: lb://API-REST-ARTICULOS
+          predicates:
+            - Path=/api/revisiones/**
+
+    discovery:
+      locator:
+        enabled: true
+server:
+  port: 8222

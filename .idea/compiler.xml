@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <excludeFromCompile>
+      <file url="file://$PROJECT_DIR$/api-rest-articulos/src/main/java/co/edu/unicauca/api_rest_articulos/core/domain/casosDeUso/RevisionServiceImpl.java" />
+      <file url="file://$PROJECT_DIR$/api-rest-articulos/src/main/java/co/edu/unicauca/api_rest_articulos/core/infrastructure/configuracion/BeanConfigurations.java" />
+      <file url="file://$PROJECT_DIR$/api-rest-articulos/src/main/java/co/edu/unicauca/api_rest_articulos/core/infrastructure/output/persistencia/repositorios/ArticuloRepository.java" />
+      <file url="file://$PROJECT_DIR$/api-rest-articulos/src/main/java/co/edu/unicauca/api_rest_articulos/core/infrastructure/output/persistencia/repositorios/RevisionRepository.java" />
+      <file url="file://$PROJECT_DIR$/api-rest-articulos/src/main/java/co/edu/unicauca/api_rest_articulos/core/infrastructure/output/services/ConferenciaService.java" />
+      <file url="file://$PROJECT_DIR$/api-rest-articulos/src/main/java/co/edu/unicauca/api_rest_articulos/core/infrastructure/output/persistencia/gateway/GestionarArticuloGateway.java" />
+      <file url="file://$PROJECT_DIR$/api-rest-articulos/src/main/java/co/edu/unicauca/api_rest_articulos/core/infrastructure/output/persistencia/gateway/GestionarRevisionGateway.java" />
+    </excludeFromCompile>
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="api-gateway" />
+        <module name="core" />
+        <module name="api-config-server" />
+        <module name="core (1) (co.edu.unicauca.apiconferencias)" />
+        <module name="api-discovery" />
+      </profile>
+      <profile name="Annotation profile for api-rest-articulos" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
+        </processorPath>
+        <module name="core (1) (co.edu.unicauca.api_rest_articulos)" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="gateway" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-config-server" options="-parameters" />
+      <module name="api-discovery" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
+      <module name="core" options="-parameters" />
+      <module name="core (1) (co.edu.unicauca.api_rest_articulos)" options="-parameters" />
+      <module name="core (1) (co.edu.unicauca.apiconferencias)" options="-parameters" />
+      <module name="gateway" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,13 @@
+co\edu\unicauca\apiconferencias\core\aplication\DTO\RolDTO.class
+co\edu\unicauca\apiconferencias\core\aplication\services\IConferenciaService.class
+co\edu\unicauca\apiconferencias\core\infraestructure\persistence\ConferenciaServiceImpl.class
+co\edu\unicauca\apiconferencias\core\aplication\DTO\ConferenciaDTO.class
+co\edu\unicauca\apiconferencias\core\aplication\services\IUsuarioService.class
+co\edu\unicauca\apiconferencias\core\domain\repositories\ConferenciaRepository.class
+co\edu\unicauca\apiconferencias\core\infraestructure\mapper\mapper.class
+co\edu\unicauca\apiconferencias\core\interfaces\ConferenciaRestController.class
+co\edu\unicauca\apiconferencias\core\aplication\DTO\UsuarioDTO.class
+co\edu\unicauca\apiconferencias\core\CoreApplication.class
+co\edu\unicauca\apiconferencias\core\domain\models\ConferenciaEntity.class
+co\edu\unicauca\apiconferencias\core\aplication\services\UsuariosService.class
+co\edu\unicauca\apiconferencias\core\infraestructure\persistence\ConferenciaServiceImpl$1.class

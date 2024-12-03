@@ -1,0 +1,100 @@
+version: "3.8"
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.0.6
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    ports:
+      - "9091:8080"
+    command:
+      - "start-dev"
+    volumes:
+      - keycloak_data:/opt/jboss/keycloak/standalone/data
+    networks:
+      - app-network
+
+  api-config-server:
+    build: ./api-config-server
+    image: api-config-server
+    ports:
+      - "8888:8888"
+    environment:
+      - SERVER_PORT=8888
+    networks:
+      - app-network
+
+  api-discovey:
+    build: ./api-discovery
+    image: api-discovery
+    ports:
+      - "8761:8761"
+    depends_on:
+      - api-config-server
+    environment:
+      - SERVER_PORT=8761
+    networks:
+      - app-network
+
+  api-gateway:
+    build: ./api-gateway
+    image: api-gateway
+    ports:
+      - "8222:8222"
+    depends_on:
+      - keycloak
+      - api-discovey
+      - api-config-server
+      - api-rest-usuario
+      - api-rest-articulos
+      - api-rest-conferencias
+    environment:
+      - SERVER_PORT=8222
+    networks:
+      - app-network
+
+  api-rest-usuario:
+    build: ./api-rest-usuario
+    image: api-rest-usuario
+    ports:
+      - "8050:8050"
+    depends_on:
+      - api-discovey
+      - api-config-server
+    environment:
+      - SERVER_PORT=8050
+    networks:
+      - app-network
+
+  api-rest-conferencias:
+    build: ./api-rest-conferencias
+    image: api-rest-conferencias
+    ports:
+      - "8070:8070"
+    depends_on:
+      - api-discovey
+      - api-config-server
+    environment:
+      - SERVER_PORT=8070
+    networks:
+      - app-network
+
+  api-rest-articulos:
+    build: ./api-rest-articulos
+    image: api-rest-articulos
+    ports:
+      - "8060:8060"
+    depends_on:
+      - api-discovey
+      - api-config-server
+    environment:
+      - SERVER_PORT=8060
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  keycloak_data:
