@@ -2,8 +2,6 @@ package co.edu.unicauca.apiconferencias.core.infraestructure.persistence;
 
 import java.util.List;
 
-import co.edu.unicauca.apiconferencias.core.aplication.services.IUsuarioService;
-import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,106 +12,62 @@ import co.edu.unicauca.apiconferencias.core.aplication.services.IConferenciaServ
 import co.edu.unicauca.apiconferencias.core.aplication.services.UsuariosService;
 import co.edu.unicauca.apiconferencias.core.domain.models.ConferenciaEntity;
 import co.edu.unicauca.apiconferencias.core.domain.repositories.ConferenciaRepository;
-/**
- * Implementación de la interfaz IConferenciaService.
- * Proporciona métodos para la gestión de conferencias, incluyendo las operaciones CRUD
- * y la agregación de artículos a una conferencia específica.
- */
+
 @Service
-@RequiredArgsConstructor
-public class ConferenciaServiceImpl implements IConferenciaService{
+public class ConferenciaServiceImpl implements IConferenciaService {
 
     @Autowired
     private ConferenciaRepository servicioAccesoBaseDatos;
 
     @Autowired
-    private IUsuarioService usuarioService;
+    private UsuariosService servicioAccesoBaseDatosUsuario;
 
     @Autowired
-	private ModelMapper modelMapper;
-    /**
-     * Obtiene la lista completa de conferencias.
-     * Convierte las entidades de conferencias a DTOs antes de retornarlas.
-     *
-     * @return Lista de ConferenciaDTO que representa todas las conferencias en la base de datos.
-     */
+    private ModelMapper modelMapper;
+
     @Override
-	public List<ConferenciaDTO> findAll() {
-		List<ConferenciaEntity> ConferenciaEntity = this.servicioAccesoBaseDatos.findAll();
-		List<ConferenciaDTO> conferenciaDTO = this.modelMapper.map(ConferenciaEntity, new TypeToken<List<ConferenciaDTO>>() {
-		}.getType());
-		return conferenciaDTO;
-	}
-    /**
-     * Busca una conferencia específica por su ID.
-     * Convierte la entidad de conferencia a un DTO antes de retornarlo.
-     *
-     * @param id ID de la conferencia a buscar.
-     * @return ConferenciaDTO correspondiente a la conferencia encontrada, o null si no existe.
-     */
+    public List<ConferenciaDTO> findAll() {
+        List<ConferenciaEntity> ConferenciaEntity = this.servicioAccesoBaseDatos.findAll();
+        List<ConferenciaDTO> conferenciaDTO = this.modelMapper.map(ConferenciaEntity, new TypeToken<List<ConferenciaDTO>>() {
+        }.getType());
+        return conferenciaDTO;
+    }
+
     @Override
     public ConferenciaDTO findById(Integer id) {
         ConferenciaEntity objConferenciaEntity = this.servicioAccesoBaseDatos.findById(id);
-		ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
-		return conferenciaDTO;
-    }
-    /**
-     * Guarda una nueva conferencia en la base de datos.
-     * Verifica si el usuario tiene permisos de "ORGANIZADOR" antes de realizar la operación.
-     *
-     * @param conferencia DTO de la conferencia a guardar.
-     * @param idUsuario ID del usuario que intenta realizar la operación.
-     * @return ConferenciaDTO correspondiente a la conferencia guardada.
-     * @throws RuntimeException si el usuario no tiene permisos de organizador.
-     */
-    @Override
-    public ConferenciaDTO save(ConferenciaDTO conferencia, Integer idUsuario) {
-        // Validar rol del usuario
-        if (!usuarioService.validarRol(idUsuario, "ORGANIZADOR").orElse(false)) {
-            throw new RuntimeException("El usuario no tiene permisos para crear conferencias");
-        }
-        ConferenciaEntity conferenciaEntity = this.modelMapper.map(conferencia, ConferenciaEntity.class);
-		ConferenciaEntity objConferenciaEntity = this.servicioAccesoBaseDatos.save(conferenciaEntity);
-		ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
-		return conferenciaDTO;
+        ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
+        return conferenciaDTO;
     }
 
-    /**
-     * Actualiza una conferencia existente.
-     * Convierte el DTO a entidad antes de actualizar y devuelve el DTO actualizado.
-     *
-     * @param id ID de la conferencia a actualizar.
-     * @param conferencia DTO de la conferencia con los datos actualizados.
-     * @return ConferenciaDTO correspondiente a la conferencia actualizada.
-     */
+    @Override
+    public ConferenciaDTO save(ConferenciaDTO conferencia, Integer idUsuario) {
+        if (!servicioAccesoBaseDatosUsuario.validarRolOrganizador(idUsuario, "ORGANIZADOR")) {
+            throw new RuntimeException("El usuario no tiene permisos para crear conferencias");
+        }
+        ConferenciaEntity objConferenciaEntity = this.modelMapper.map(conferencia, ConferenciaEntity.class);
+        objConferenciaEntity = this.servicioAccesoBaseDatos.save(objConferenciaEntity);
+        ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
+        return conferenciaDTO;
+    }
+
     @Override
     public ConferenciaDTO update(Integer id, ConferenciaDTO conferencia) {
-        ConferenciaEntity ConferenciaEntity = this.modelMapper.map(conferencia, ConferenciaEntity.class);
-        ConferenciaEntity ConferenciaEntityActualizado = this.servicioAccesoBaseDatos.update(id, ConferenciaEntity);
-        ConferenciaDTO ConferenciaDTO = this.modelMapper.map(ConferenciaEntityActualizado, ConferenciaDTO.class);
-        return ConferenciaDTO;
+        ConferenciaEntity objConferenciaEntity = this.modelMapper.map(conferencia, ConferenciaEntity.class);
+        objConferenciaEntity = this.servicioAccesoBaseDatos.update(id, objConferenciaEntity);
+        ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
+        return conferenciaDTO;
     }
-    /**
-     * Elimina una conferencia de la base de datos.
-     *
-     * @param id ID de la conferencia a eliminar.
-     * @return true si la conferencia fue eliminada exitosamente, false en caso contrario.
-     */
+
+    @Override
+    public ConferenciaDTO agregarArticulo(Integer id, Integer idArticulo) {
+        ConferenciaEntity objConferenciaEntity = this.servicioAccesoBaseDatos.agregarArticulo(id, idArticulo);
+        ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
+        return conferenciaDTO;
+    }
+
     @Override
     public boolean delete(Integer id) {
         return this.servicioAccesoBaseDatos.delete(id);
-    }
-    /**
-     * Agrega un artículo a una conferencia específica.
-     *
-     * @param idConferencia ID de la conferencia a la que se desea agregar el artículo.
-     * @param idArticulo ID del artículo que se desea agregar.
-     * @return ConferenciaDTO correspondiente a la conferencia con el artículo agregado.
-     */
-    @Override
-    public ConferenciaDTO agregarArticulo(Integer idConferencia, Integer idArticulo) {
-        ConferenciaEntity conferenciaConArticuloAgregado = this.servicioAccesoBaseDatos.agregarArticulo(idConferencia, idArticulo);
-        ConferenciaDTO ConferenciaDTO = this.modelMapper.map(conferenciaConArticuloAgregado, ConferenciaDTO.class);
-        return ConferenciaDTO; 
     }
 }
