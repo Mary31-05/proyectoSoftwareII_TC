@@ -8,6 +8,7 @@ import java.util.List;
 
 import co.edu.unicauca.apiusuarios.core.aplication.DTO.CRUDUsuariosDTO.UsuarioDTO;
 import co.edu.unicauca.apiusuarios.core.aplication.DTO.UsuariosConConferenciasDTO.ConferenciaDTO;
+import co.edu.unicauca.apiusuarios.core.domain.models.IUsuarioEntity;
 
 public interface IUsuarioService {
     /**
@@ -61,6 +62,12 @@ public interface IUsuarioService {
      * @param rol Nombre del rol a validar.
      * @return true si el usuario tiene el rol, false en caso contrario.
      */
-    public boolean validarRol(Integer idUsuario, String rol);
+    //public boolean validarRol(Integer idUsuario, String rol);
+
+    public String obtenerRolPorId(Integer id);
+
+    public List<String> obtenerPermisosDeUsuario(Integer id);
+
+    public boolean puedeRealizarAccion(IUsuarioEntity usuario, String accion);
 }
 

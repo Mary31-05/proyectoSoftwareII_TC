@@ -9,6 +9,8 @@ import co.edu.unicauca.apiusuarios.core.aplication.DTO.CRUDUsuariosDTO.UsuarioDT
 import co.edu.unicauca.apiusuarios.core.aplication.DTO.UsuariosConConferenciasDTO.ConferenciaDTO;
 import co.edu.unicauca.apiusuarios.core.aplication.services.IUsuarioService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +26,31 @@ public class UsuarioRestController {
     @Autowired
     private IUsuarioService usuarioService;
 
+    @GetMapping("/permisos")
+    public String obtenerPermisos(@RequestParam Integer id) {
+        return usuarioService.obtenerPermisosDeUsuario(id).toString();
+    }
+
+    @GetMapping("/{id}/permisos")
+    public ResponseEntity<List<String>> obtenerPermisos2(@PathVariable Integer id) {
+        List<String> permisos = usuarioService.obtenerPermisosDeUsuario(id);
+        if (permisos.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+        return ResponseEntity.ok(permisos);
+    }
+
+    @GetMapping("/{id}/rol")
+    public ResponseEntity<String> obtenerRol(@PathVariable Integer id) {
+        String rol = usuarioService.obtenerRolPorId(id);
+        if (rol != null) {
+            return ResponseEntity.ok(rol);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
+        }
+    }
+
+
     /**
      * Crea un nuevo usuario.
      *
@@ -31,7 +58,7 @@ public class UsuarioRestController {
      * @return Objeto UsuarioDTO del usuario creado.
      */
 
-    @PostMapping
+    /*@PostMapping
     public UsuarioDTO crearUsuario(@RequestBody UsuarioDTO usuario) {
         UsuarioDTO objUsuario = null;
         try {
@@ -46,7 +73,7 @@ public class UsuarioRestController {
      * Obtiene todos los usuarios.
      * @return Lista de usuarios (UsuarioDTO).
      */
-    @GetMapping
+    /*@GetMapping
     public List<UsuarioDTO> listarUsuarios() {
         return usuarioService.findAll();
     }
@@ -56,7 +83,7 @@ public class UsuarioRestController {
      * @param idUsuario Identificador único del usuario.
      * @return Lista de conferencias (ConferenciaDTO) del usuario.
      */
-    @GetMapping("/conferencias/{idUsuario}")
+    /*@GetMapping("/conferencias/{idUsuario}")
     public List<ConferenciaDTO> listarUsuarioConSusConferencias(@PathVariable Integer idUsuario) {
         return usuarioService.ListarConferenciasDeUsuario(idUsuario);
     }
@@ -65,7 +92,7 @@ public class UsuarioRestController {
      * @param id Identificador único del usuario.
      * @return Objeto UsuarioDTO si se encuentra el usuario, o null si no existe.
      */
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public UsuarioDTO consultarUsuario(@PathVariable Integer id) {
         UsuarioDTO objUsuario = null;
         objUsuario = usuarioService.findById(id);
@@ -78,7 +105,7 @@ public class UsuarioRestController {
      * @param usuario Objeto UsuarioDTO con los nuevos datos.
      * @return El usuario actualizado, o null si no se encontró el usuario.
      */
-    @PutMapping("/{id}")
+    /*@PutMapping("/{id}")
     public UsuarioDTO actualizarUsuario(@RequestBody UsuarioDTO usuario, @PathVariable Integer id){
         UsuarioDTO objUsuario = null;
         UsuarioDTO usuarioActual = usuarioService.findById(id);
@@ -92,7 +119,7 @@ public class UsuarioRestController {
      * @param id Identificador del usuario a eliminar.
      * @return true si el usuario fue eliminado, false si no se encontró el usuario.
      */
-    @DeleteMapping("/{id}")
+    /*@DeleteMapping("/{id}")
     public Boolean eliminarUsuario(@PathVariable Integer id) {
         Boolean bandera = false;
         UsuarioDTO usuarioActual = usuarioService.findById(id);
@@ -107,9 +134,9 @@ public class UsuarioRestController {
      * @param rol Nombre del rol a validar.
      * @return ResponseEntity con true si el usuario tiene el rol, false en caso contrario.
      */
-    @GetMapping("/{idUsuario}/validarRol")
+    /*@GetMapping("/{idUsuario}/validarRol")
     public ResponseEntity<Boolean> validarRol(@PathVariable Integer idUsuario, @RequestParam String rol) {
         boolean validarRol = usuarioService.validarRol(idUsuario, rol);
         return ResponseEntity.ok(validarRol);
-    }
+    }*/
 }

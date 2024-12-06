@@ -9,22 +9,23 @@ package co.edu.unicauca.apiusuarios.core.domain.repositories;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
-import co.edu.unicauca.apiusuarios.core.domain.models.RolEntity;
-import co.edu.unicauca.apiusuarios.core.domain.models.UsuarioEntity;
+import co.edu.unicauca.apiusuarios.core.domain.models.UsuarioBaseImpl;
+import co.edu.unicauca.apiusuarios.core.domain.models.IUsuarioEntity;
 
 @Repository
 public class UsuarioRepository {
 
-    private ArrayList<UsuarioEntity> listaDeUsuarios;
+    private ArrayList<IUsuarioEntity> listaDeUsuarios;
     /**
      * Constructor de UsuarioRepository.
      * Inicializa la lista de usuarios y carga usuarios predeterminados.
      */
     public UsuarioRepository(){
-        this.listaDeUsuarios = new ArrayList<UsuarioEntity>();
+        this.listaDeUsuarios = new ArrayList<IUsuarioEntity>();
         cargarUsuarios();
     }
     /**
@@ -32,7 +33,7 @@ public class UsuarioRepository {
      * 
      * @return Lista de usuarios de tipo UsuarioEntity.
      */
-    public List<UsuarioEntity> findAll(){
+    public List<IUsuarioEntity> findAll(){
         System.out.println("Invocando a listarusuarios");
         return this.listaDeUsuarios;
     }
@@ -42,9 +43,9 @@ public class UsuarioRepository {
      * @param usuario Objeto UsuarioEntity a almacenar.
      * @return El usuario almacenado, o null si no se pudo agregar.
      */
-    public UsuarioEntity save(UsuarioEntity usuario){
+    public IUsuarioEntity save(IUsuarioEntity usuario){
         System.out.println("Invocando a almacenar usuario");
-        UsuarioEntity objUsuario = null;
+        IUsuarioEntity objUsuario = null;
         if (this.listaDeUsuarios.add(usuario))
             objUsuario = usuario;
         return objUsuario;
@@ -55,17 +56,11 @@ public class UsuarioRepository {
      * @param id Identificador único del usuario.
      * @return Objeto UsuarioEntity si se encuentra el usuario, o null si no existe.
      */
-    public UsuarioEntity findById(Integer id){
-        System.out.println("Invocando a consultar un usuario");
-        UsuarioEntity objUsuario = null;
-
-        for (UsuarioEntity usuario : listaDeUsuarios){
-            if (usuario.getId() == id){
-                objUsuario = usuario;
-                break;
-            }
-        }
-        return objUsuario;
+    // Método para buscar un usuario por ID
+    public Optional<IUsuarioEntity> findById(Integer id) {
+        return listaDeUsuarios.stream()
+                .filter(Iusuario -> Iusuario.getId().equals(id)) // Compara por ID
+                .findFirst();
     }
     /**
      * Actualiza un usuario existente en el repositorio.
@@ -74,9 +69,9 @@ public class UsuarioRepository {
      * @param usuario Objeto UsuarioEntity con la información actualizada.
      * @return El usuario actualizado, o null si el usuario no se encontró.
      */
-    public UsuarioEntity update(Integer id, UsuarioEntity usuario){
+    public IUsuarioEntity update(Integer id, IUsuarioEntity usuario){
         System.out.println("Invocando a actualizar un usuario");
-        UsuarioEntity objUsuario = null;
+        IUsuarioEntity objUsuario = null;
 
         for (int i = 0; i < this.listaDeUsuarios.size(); i++){
             if (this.listaDeUsuarios.get(i).getId() == id){
@@ -114,16 +109,19 @@ public class UsuarioRepository {
      */
 
     private void cargarUsuarios() {
-        UsuarioEntity usuario1 = new UsuarioEntity(1, "Juan", "Pérez", "juan.perez@example.com", "contraseña1", new RolEntity(1, "ORGANIZADOR"));
+
+        listaDeUsuarios.add(new UsuarioBaseImpl(1, "Juan", "Pérez", "juan.perez@example.com", "contraseña1", "ORGANIZADOR"));
+
+        /*IUsuarioEntity usuario1 = new IUsuarioEntity(1, "Juan", "Pérez", "juan.perez@example.com", "contraseña1", new RolEntity(1, "ORGANIZADOR"));
         this.listaDeUsuarios.add(usuario1);
 
-        UsuarioEntity usuario2 = new UsuarioEntity(2, "Ana", "Gómez", "ana.gomez@example.com", "contraseña2", new RolEntity(2, "EVALUADOR"));
+        IUsuarioEntity usuario2 = new IUsuarioEntity(2, "Ana", "Gómez", "ana.gomez@example.com", "contraseña2", new RolEntity(2, "EVALUADOR"));
         this.listaDeUsuarios.add(usuario2);
 
-        UsuarioEntity usuario3 = new UsuarioEntity(3, "Luis", "Martínez", "luis.martinez@example.com", "contraseña3", new RolEntity(3, "AUTOR"));
+        IUsuarioEntity usuario3 = new IUsuarioEntity(3, "Luis", "Martínez", "luis.martinez@example.com", "contraseña3", new RolEntity(3, "AUTOR"));
         this.listaDeUsuarios.add(usuario3);
 
-        UsuarioEntity usuario4 = new UsuarioEntity(4, "María", "Hernández", "maria.hernandez@example.com", "contraseña4", new RolEntity(4, "PARTICIPANTE"));
-        this.listaDeUsuarios.add(usuario4);       
+        IUsuarioEntity usuario4 = new IUsuarioEntity(4, "María", "Hernández", "maria.hernandez@example.com", "contraseña4", new RolEntity(4, "PARTICIPANTE"));
+        this.listaDeUsuarios.add(usuario4);    */   
     }
 }

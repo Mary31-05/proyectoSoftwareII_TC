@@ -14,7 +14,7 @@ public class UsuarioDTO {
     private String nombre;
     private String apellido;
     private String correo;
-    private RolDTO rol;
+    private String rol;
     /**
      * Constructor sin argumentos.
      */

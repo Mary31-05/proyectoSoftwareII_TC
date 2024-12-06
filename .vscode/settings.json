@@ -1,4 +1,26 @@
 {
     "java.compile.nullAnalysis.mode": "automatic",
-    "java.configuration.updateBuildConfiguration": "interactive"
+    "java.configuration.updateBuildConfiguration": "interactive",
+
+    // Exclusión de archivos innecesarios del proceso de indexación
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/target": true,
+        "**/.git": true
+    },
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/target": true,
+        "**/.git": true
+    },
+
+    // Configuración del servidor de lenguaje Java
+    "java.jdt.ls.vmargs": "-Xmx2G -Xms1G",
+
+    // Configuración de formato
+    "editor.formatOnSave": true,
+
+    // Opciones adicionales para la extensión de Java
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "java.autobuild.enabled": true
 }

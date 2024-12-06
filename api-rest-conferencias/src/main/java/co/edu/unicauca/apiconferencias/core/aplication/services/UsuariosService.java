@@ -1,8 +1,16 @@
 package co.edu.unicauca.apiconferencias.core.aplication.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
+
+
 
 /**
  * Servicio que se encarga de realizar operaciones relacionadas con los usuarios.
@@ -11,28 +19,28 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class UsuariosService {
     
-    @Autowired
-    private WebClient.Builder webClientBuilder;
-     /**
-     * Verifica si un usuario tiene un rol específico.
-     * Este método realiza una solicitud HTTP a otro microservicio que gestiona usuarios,
-     * consultando si un usuario en particular posee un rol determinado.
-     *
-     * @param idUsuario el ID del usuario a validar.
-     * @param rol el nombre del rol a verificar.
-     * @return true si el usuario posee el rol especificado; false en caso contrario o si la respuesta es nula.
-     */
+    private final String USUARIOS_API_URL = "http://localhost:8050/api/usuarios/";
+    private final RestTemplate restTemplate;
 
-    public boolean validarRolOrganizador(Integer idUsuario, String rol) {
-        String url = "http://localhost:8080/api/usuarios/" + idUsuario + "/validarRol?rol="+rol;
+    public UsuariosService(RestTemplateBuilder restTemplateBuilder) {
+        this.restTemplate = restTemplateBuilder.build();
+    }
 
-        Boolean tieneRol = webClientBuilder.build()
-                .get()
-                .uri(url)
-                .retrieve()
-                .bodyToMono(Boolean.class)
-                .block(); 
-                
-        return tieneRol != null && tieneRol;
+    public boolean validarPermisoCrearConferencia(Integer idUsuario) {
+        String url = USUARIOS_API_URL + idUsuario + "/permisos";
+
+        try {
+            ResponseEntity<List> response = restTemplate.getForEntity(url, List.class);
+
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                List<String> permisos = response.getBody();
+                return permisos.contains("CREAR_CONFERENCIA");
+            }
+        } catch (HttpClientErrorException e) {
+            // Manejar el caso donde el usuario no existe o no tiene permisos
+            System.out.println("Error al obtener permisos: " + e.getMessage());
+        }
+
+        return false;
     }
 }

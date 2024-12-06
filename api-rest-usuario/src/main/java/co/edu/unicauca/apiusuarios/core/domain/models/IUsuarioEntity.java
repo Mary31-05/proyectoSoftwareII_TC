@@ -5,10 +5,7 @@
  */
 package co.edu.unicauca.apiusuarios.core.domain.models;
 
-import io.micrometer.common.lang.NonNull;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.List;
 /**
  * Clase UsuarioEntity
  * Define la estructura de datos para un usuario.
@@ -24,22 +21,14 @@ import lombok.Setter;
  * Constructor:
  * - UsuarioEntity(): Constructor por defecto.
  */
-@Getter
-@Setter
-@AllArgsConstructor
-public class UsuarioEntity {
-    private Integer id;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private String password;
 
-    @NonNull
-    private RolEntity rol;
-    /**
-     * Constructor por defecto para UsuarioEntity.
-     */
-    public UsuarioEntity() {
+public interface IUsuarioEntity {
+    Integer getId();
+    String getNombre();
+    String getApellido();
+    String getCorreo();
+    String getPassword();
+    String getRol();
+    List<String> getPermisos();
 
-    }
 }

@@ -20,7 +20,7 @@ public class ConferenciaServiceImpl implements IConferenciaService {
     private ConferenciaRepository servicioAccesoBaseDatos;
 
     @Autowired
-    private UsuariosService servicioAccesoBaseDatosUsuario;
+    private UsuariosService usuarioService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -42,13 +42,14 @@ public class ConferenciaServiceImpl implements IConferenciaService {
 
     @Override
     public ConferenciaDTO save(ConferenciaDTO conferencia, Integer idUsuario) {
-        if (!servicioAccesoBaseDatosUsuario.validarRolOrganizador(idUsuario, "ORGANIZADOR")) {
+        // Validar rol del usuario
+        if (!usuarioService.validarPermisoCrearConferencia(idUsuario)) {
             throw new RuntimeException("El usuario no tiene permisos para crear conferencias");
         }
-        ConferenciaEntity objConferenciaEntity = this.modelMapper.map(conferencia, ConferenciaEntity.class);
-        objConferenciaEntity = this.servicioAccesoBaseDatos.save(objConferenciaEntity);
-        ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
-        return conferenciaDTO;
+        ConferenciaEntity conferenciaEntity = this.modelMapper.map(conferencia, ConferenciaEntity.class);
+		ConferenciaEntity objConferenciaEntity = this.servicioAccesoBaseDatos.save(conferenciaEntity);
+		ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
+		return conferenciaDTO;
     }
 
     @Override

@@ -11,9 +11,10 @@ import co.edu.unicauca.apiusuarios.core.aplication.DTO.CRUDUsuariosDTO.UsuarioDT
 import co.edu.unicauca.apiusuarios.core.aplication.DTO.UsuariosConConferenciasDTO.ConferenciaDTO;
 import co.edu.unicauca.apiusuarios.core.aplication.services.ConferenciasService;
 import co.edu.unicauca.apiusuarios.core.aplication.services.IUsuarioService;
-import co.edu.unicauca.apiusuarios.core.domain.models.RolEntity;
-import co.edu.unicauca.apiusuarios.core.domain.models.UsuarioEntity;
-import co.edu.unicauca.apiusuarios.core.domain.repositories.RolRepository;
+import co.edu.unicauca.apiusuarios.core.domain.models.UsuarioBaseImpl;
+import co.edu.unicauca.apiusuarios.core.domain.models.OrganizadorDecorator;
+import co.edu.unicauca.apiusuarios.core.domain.models.IUsuarioEntity;
+
 import co.edu.unicauca.apiusuarios.core.domain.repositories.UsuarioRepository;
 /**
  * Implementación del servicio para la gestión de usuarios.
@@ -27,9 +28,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
     private UsuarioRepository servicioAccesoBaseDatos;
 
     @Autowired
-    private RolRepository servicioAccesoDatosRol;
-
-    @Autowired
     private ConferenciasService servicioConsumirObtencionConferencias;
 
     @Autowired
@@ -41,7 +39,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
      */
     @Override
     public List<UsuarioDTO> findAll() {
-        List<UsuarioEntity> usuariosEntity = this.servicioAccesoBaseDatos.findAll();
+        List<IUsuarioEntity> usuariosEntity = this.servicioAccesoBaseDatos.findAll();
         List<UsuarioDTO> usuariosDTO = this.modelMapper.map(usuariosEntity, new TypeToken<List<UsuarioDTO>>() {}.getType());
         return usuariosDTO;
     }
@@ -54,9 +52,10 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
     public UsuarioDTO findById(Integer id) {
-        UsuarioEntity objUsuarioEntity = this.servicioAccesoBaseDatos.findById(id);
+        return null;
+        /*Optional objUsuarioEntity = this.servicioAccesoBaseDatos.findById(id);
         UsuarioDTO usuarioDTO = this.modelMapper.map(objUsuarioEntity, UsuarioDTO.class);
-        return usuarioDTO;
+        return usuarioDTO;*/
     }
     /**
      * Guarda un nuevo usuario y devuelve su representación en formato DTO.
@@ -69,7 +68,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
     @Override
     public UsuarioDTO save(UsuarioDTO usuario) throws IllegalAccessException {
         // Validar si el rol existe}
-        Integer rolId = usuario.getRol() != null ? usuario.getRol().getId() : null;
+        /*String rolId = usuario.getRol() != null ? usuario.getRol() : null;
         if (rolId == null)
             throw new IllegalAccessException("El rol no puede ser nulo");
         
@@ -77,11 +76,12 @@ public class UsuarioServiceImpl implements IUsuarioService {
         if (rolEntity == null)
             throw new IllegalAccessException("El rol con ID " + rolId + " no existe");
         
-        UsuarioEntity usuarioEntity = this.modelMapper.map(usuario, UsuarioEntity.class);
+        IUsuarioEntity usuarioEntity = this.modelMapper.map(usuario, IUsuarioEntity.class);
         usuarioEntity.setRol(rolEntity);
-        UsuarioEntity objUsuarioEntity = this.servicioAccesoBaseDatos.save(usuarioEntity);
+        IUsuarioEntity objUsuarioEntity = this.servicioAccesoBaseDatos.save(usuarioEntity);
         UsuarioDTO usuarioDTO = this.modelMapper.map(objUsuarioEntity, UsuarioDTO.class);
-        return usuarioDTO;
+        return usuarioDTO;*/
+        return null;
     }
     /**
      * Actualiza un usuario existente y devuelve su nueva representación en formato DTO.
@@ -92,8 +92,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
      */
     @Override
     public UsuarioDTO update(Integer id, UsuarioDTO usuario) {
-        UsuarioEntity usuarioEntity = this.modelMapper.map(usuario, UsuarioEntity.class);
-        UsuarioEntity objUsuarioEntity = this.servicioAccesoBaseDatos.update(id, usuarioEntity);
+        IUsuarioEntity usuarioEntity = this.modelMapper.map(usuario, IUsuarioEntity.class);
+        IUsuarioEntity objUsuarioEntity = this.servicioAccesoBaseDatos.update(id, usuarioEntity);
         UsuarioDTO usuarioDTO = this.modelMapper.map(objUsuarioEntity, UsuarioDTO.class);
         return usuarioDTO;
     }
@@ -119,16 +119,39 @@ public class UsuarioServiceImpl implements IUsuarioService {
         listaConferenciasDelUsuario = this.servicioConsumirObtencionConferencias.obtenerConferenciasDeUsuario(idUsuario);
         return listaConferenciasDelUsuario;
     }
-    /**
-     * Valida si un usuario tiene un rol específico.
-     *
-     * @param idUsuario Identificador del usuario a validar.
-     * @param rol Nombre del rol a validar.
-     * @return true si el usuario tiene el rol, false en caso contrario.
-     */
     @Override
-    public boolean validarRol(Integer idUsuario, String rol) {
-        UsuarioEntity usuario = this.servicioAccesoBaseDatos.findById(idUsuario);
-        return usuario != null && usuario.getRol().getNombre().equals(rol);
+    public String obtenerRolPorId(Integer id) {
+        return servicioAccesoBaseDatos.findById(id)
+                .map(IUsuarioEntity::getRol) // Obtiene el rol del usuario si existe
+                .orElse(null);       // Retorna null si el usuario no está en la lista
     }
+    @Override
+    public List<String> obtenerPermisosDeUsuario(Integer id) {
+        // Buscar el usuario en el repositorio por su ID
+        IUsuarioEntity usuarioBase = servicioAccesoBaseDatos.findById(id)
+            .map(usuario -> new UsuarioBaseImpl(
+                    usuario.getId(),
+                    usuario.getNombre(),
+                    usuario.getApellido(),
+                    usuario.getCorreo(),
+                    usuario.getPassword(),
+                    usuario.getRol()
+            ))
+            .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+
+        // Decorar según el rol
+        IUsuarioEntity usuarioDecorado = switch (usuarioBase.getRol()) {
+            case "ORGANIZADOR" -> new OrganizadorDecorator(usuarioBase);
+            default -> usuarioBase; // Usuario básico sin decoradores adicionales
+        };
+
+        return usuarioDecorado.getPermisos();
+    }
+
+    @Override
+    public boolean puedeRealizarAccion(IUsuarioEntity usuario, String accion) {
+        List<String> permisos = usuario.getPermisos();
+        return permisos.contains(accion); // Valida si tiene el permiso específico
+    }
+    
 }
