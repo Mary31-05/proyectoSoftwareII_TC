@@ -1,8 +1,13 @@
 package co.edu.unicauca.api_rest_articulos.core.infrastructure.output.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestTemplate;
 /**
  * Servicio para la gestión de usuarios en el sistema.
  * 
@@ -13,26 +18,28 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class UsuarioService {
     
-    @Autowired
-    private WebClient.Builder webClientBuilder;
-    /**
-     * Valida si un usuario tiene un rol específico.
-     * 
-     * @param idUsuario Identificador del usuario cuyo rol se va a validar.
-     * @param rol El nombre del rol que se desea validar.
-     * @return true si el usuario tiene el rol especificado; false en caso contrario.
-     *         Si ocurre un error al consultar, puede devolver false.
-     */
-    public boolean validarRol(Integer idUsuario, String rol) {
-        String url = "http://localhost:8080/api/usuarios/" + idUsuario + "/validarRol?rol="+rol;
+    private final String USUARIOS_API_URL = "http://localhost:8050/api/usuarios/";
+    private final RestTemplate restTemplate;
 
-        Boolean tieneRol = webClientBuilder.build()
-                .get()
-                .uri(url)
-                .retrieve()
-                .bodyToMono(Boolean.class)
-                .block(); 
-                
-        return tieneRol != null && tieneRol;
+    public UsuarioService(RestTemplateBuilder restTemplateBuilder) {
+        this.restTemplate = restTemplateBuilder.build();
+    }
+
+    public boolean validarPermisoCrearArticulo(Integer idUsuario) {
+        String url = USUARIOS_API_URL + idUsuario + "/permisos";
+
+        try {
+            ResponseEntity<List> response = restTemplate.getForEntity(url, List.class);
+
+            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
+                List<String> permisos = response.getBody();
+                return permisos.contains("CREAR_ARTICULO");
+            }
+        } catch (HttpClientErrorException e) {
+            // Manejar el caso donde el usuario no existe o no tiene permisos
+            System.out.println("Error al obtener permisos: " + e.getMessage());
+        }
+
+        return false;
     }
 }

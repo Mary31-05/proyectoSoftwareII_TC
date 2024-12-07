@@ -25,4 +25,8 @@ public class ArticuloEntity {
      * Objeto que representa la conferencia en la que se presentó o se presentará el artículo.
      */
     private ConferenciaDTO conferencia;
+
+    public ArticuloEntity() {
+    }
+
 }

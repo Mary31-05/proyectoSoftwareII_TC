@@ -28,4 +28,8 @@ public class RevisionEntity {
      * Valor predeterminado: "Pendiente".
      */
     private String estado = "Pendiente";
+
+    public RevisionEntity() {
+        // Constructor vacío requerido por ModelMapper
+    }
 }

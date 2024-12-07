@@ -52,12 +52,12 @@ public class RevisionServiceImpl implements IRevisionService{
 
     @Override
     public Revision save(Revision revision, Integer idUsuario) {
-        if (!objUsuarioService.validarRol(idUsuario, "ORGANIZADOR")) {
+        if (!objUsuarioService.validarPermisoCrearArticulo(idUsuario)) {
             throw new RuntimeException("El usuario no tiene permisos para crear una revisión");
         }
 
         for (Integer idEvaluador : revision.getEvaluadores()) {
-            if (!objUsuarioService.validarRol(idEvaluador, "EVALUADOR")) {
+            if (!objUsuarioService.validarPermisoCrearArticulo(idEvaluador)) {
                 throw new RuntimeException("El evaluador con ID " + idEvaluador + " no puede ser asignado ya que no es un EVALUADOR");
             }
         }
@@ -87,7 +87,7 @@ public class RevisionServiceImpl implements IRevisionService{
     @Override
     public Revision agregarComentario(Integer idRevision, Integer idEvaluador, String comentario) {
                 // Validar rol del evaluador
-                if (!objUsuarioService.validarRol(idEvaluador, "EVALUADOR")) {
+                if (!objUsuarioService.validarPermisoCrearArticulo(idEvaluador)) {
                     throw new RuntimeException("El usuario no tiene permisos para evaluar el artículo");
                 }
         

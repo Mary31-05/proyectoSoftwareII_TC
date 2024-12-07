@@ -48,10 +48,10 @@ public class ArticuloServiceImpl implements IArticuloService {
 
     @Override
     public Articulo save(Articulo articulo, Integer idUsuario) {
-        if (!objUsuarioService.validarRol(idUsuario, "AUTOR")) {
+        if (!objUsuarioService.validarPermisoCrearArticulo(idUsuario)) {
             throw new RuntimeException("El usuario no tiene permisos para subir artículos");
         }
-        
+
         Articulo guardado = objGestionarArticulo.save(articulo, idUsuario);
         if (guardado == null) {
             return objArticuloFormateador.prepararRespuestaFallida("Error al guardar el artículo");

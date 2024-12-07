@@ -5,8 +5,7 @@
  */
 package co.edu.unicauca.apiusuarios.core.interfaces;
 
-import co.edu.unicauca.apiusuarios.core.aplication.DTO.CRUDUsuariosDTO.UsuarioDTO;
-import co.edu.unicauca.apiusuarios.core.aplication.DTO.UsuariosConConferenciasDTO.ConferenciaDTO;
+
 import co.edu.unicauca.apiusuarios.core.aplication.services.IUsuarioService;
 import lombok.RequiredArgsConstructor;
 

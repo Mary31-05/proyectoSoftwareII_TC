@@ -13,6 +13,8 @@ import co.edu.unicauca.apiusuarios.core.aplication.services.ConferenciasService;
 import co.edu.unicauca.apiusuarios.core.aplication.services.IUsuarioService;
 import co.edu.unicauca.apiusuarios.core.domain.models.UsuarioBaseImpl;
 import co.edu.unicauca.apiusuarios.core.domain.models.OrganizadorDecorator;
+import co.edu.unicauca.apiusuarios.core.domain.models.AutorDecorator;
+import co.edu.unicauca.apiusuarios.core.domain.models.EvaluadorDecorator;
 import co.edu.unicauca.apiusuarios.core.domain.models.IUsuarioEntity;
 
 import co.edu.unicauca.apiusuarios.core.domain.repositories.UsuarioRepository;
@@ -142,6 +144,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
         // Decorar según el rol
         IUsuarioEntity usuarioDecorado = switch (usuarioBase.getRol()) {
             case "ORGANIZADOR" -> new OrganizadorDecorator(usuarioBase);
+            case "AUTOR" -> new AutorDecorator(usuarioBase);
+            case "EVALUADOR" -> new EvaluadorDecorator(usuarioBase);
             default -> usuarioBase; // Usuario básico sin decoradores adicionales
         };
 

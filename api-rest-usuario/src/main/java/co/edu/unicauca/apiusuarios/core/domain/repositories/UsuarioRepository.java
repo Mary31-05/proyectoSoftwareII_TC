@@ -110,7 +110,11 @@ public class UsuarioRepository {
 
     private void cargarUsuarios() {
 
-        listaDeUsuarios.add(new UsuarioBaseImpl(1, "Juan", "Pérez", "juan.perez@example.com", "contraseña1", "ORGANIZADOR"));
+        listaDeUsuarios.add(new UsuarioBaseImpl(1, "Juan", "Pérez", "juan.perez@example.com", "1234", "ORGANIZADOR"));
+
+        listaDeUsuarios.add(new UsuarioBaseImpl(2, "Ana", "Gómez", "ana.gomez@example.com", "1234", "AUTOR"));
+
+        listaDeUsuarios.add(new UsuarioBaseImpl(3, "Luis", "Martínez", "luis.martinez@example.com", "1234", "EVALUADOR"));
 
         /*IUsuarioEntity usuario1 = new IUsuarioEntity(1, "Juan", "Pérez", "juan.perez@example.com", "contraseña1", new RolEntity(1, "ORGANIZADOR"));
         this.listaDeUsuarios.add(usuario1);

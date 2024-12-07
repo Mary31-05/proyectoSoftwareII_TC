@@ -20,6 +20,7 @@
         <module name="core" />
         <module name="api-config-server" />
         <module name="core (1) (co.edu.unicauca.apiconferencias)" />
+        <module name="core (2) (co.edu.unicauca.apiusuarios)" />
         <module name="api-discovery" />
       </profile>
       <profile name="Annotation profile for api-rest-articulos" enabled="true">
@@ -31,6 +32,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.5.5.Final/mapstruct-processor-1.5.5.Final.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
+        <module name="api-rest-articulos" />
         <module name="core (1) (co.edu.unicauca.api_rest_articulos)" />
       </profile>
     </annotationProcessing>
@@ -43,9 +45,11 @@
       <module name="api-config-server" options="-parameters" />
       <module name="api-discovery" options="-parameters" />
       <module name="api-gateway" options="-parameters" />
+      <module name="api-rest-articulos" options="-parameters" />
       <module name="core" options="-parameters" />
       <module name="core (1) (co.edu.unicauca.api_rest_articulos)" options="-parameters" />
       <module name="core (1) (co.edu.unicauca.apiconferencias)" options="-parameters" />
+      <module name="core (2) (co.edu.unicauca.apiusuarios)" options="-parameters" />
       <module name="gateway" options="-parameters" />
     </option>
   </component>
