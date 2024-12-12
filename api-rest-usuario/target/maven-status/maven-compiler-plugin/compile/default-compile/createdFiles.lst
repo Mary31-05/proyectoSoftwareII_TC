@@ -15,4 +15,5 @@ co\edu\unicauca\apiusuarios\core\CoreApplication.class
 co\edu\unicauca\apiusuarios\core\domain\models\UsuarioBaseImpl.class
 co\edu\unicauca\apiusuarios\core\aplication\services\ConferenciasService.class
 co\edu\unicauca\apiusuarios\core\aplication\services\IUsuarioService.class
+utils\TokenUtils.class
 co\edu\unicauca\apiusuarios\core\aplication\DTO\UsuariosConConferenciasDTO\ConferenciaDTO.class
