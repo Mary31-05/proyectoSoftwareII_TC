@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.unicauca.apiusuarios.core.aplication.DTO.CRUDUsuariosDTO.UsuarioDTO;
-import co.edu.unicauca.apiusuarios.core.aplication.DTO.UsuariosConConferenciasDTO.ConferenciaDTO;
-import co.edu.unicauca.apiusuarios.core.aplication.services.ConferenciasService;
 import co.edu.unicauca.apiusuarios.core.aplication.services.IUsuarioService;
 import co.edu.unicauca.apiusuarios.core.domain.models.OrganizadorDecorator;
 import co.edu.unicauca.apiusuarios.core.domain.models.AutorDecorator;
@@ -28,8 +26,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
     @Autowired
     private UsuarioRepository servicioAccesoBaseDatos;
 
-    @Autowired
-    private ConferenciasService servicioConsumirObtencionConferencias;
+
+    //private ConferenciasService servicioConsumirObtencionConferencias;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -109,18 +107,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
     public boolean delete(Integer id) {
         return false;//return this.servicioAccesoBaseDatos.delete(id);
     }
-    /**
-     * Lista las conferencias asociadas a un usuario.
-     *
-     * @param idUsuario Identificador del usuario.
-     * @return Lista de objetos ConferenciaDTO que representan las conferencias del usuario.
-     */
-    @Override
+
+    /*@Override
     public List<ConferenciaDTO> ListarConferenciasDeUsuario(Integer idUsuario) {
         List<ConferenciaDTO> listaConferenciasDelUsuario;
         listaConferenciasDelUsuario = this.servicioConsumirObtencionConferencias.obtenerConferenciasDeUsuario(idUsuario);
         return listaConferenciasDelUsuario;
-    }
+    }*/
     @Override
     public String obtenerRolPorId(Integer id) {
         return null;

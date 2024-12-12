@@ -47,21 +47,10 @@ public interface IUsuarioService {
      * @return true si se eliminó correctamente, false en caso contrario.
      */
     public boolean delete(Integer id);
-    /**
-     * Lista las conferencias asociadas a un usuario específico.
-     *
-     * @param idUsuario ID del usuario cuyas conferencias se desean listar.
-     * @return Lista de objetos ConferenciaDTO representando las conferencias del usuario.
-     */
-    public List<ConferenciaDTO> ListarConferenciasDeUsuario(Integer idUsuario);
+
+    //public List<ConferenciaDTO> ListarConferenciasDeUsuario(Integer idUsuario);
     
-    /**
-     * Valida si un usuario tiene un rol específico.
-     *
-     * @param idUsuario ID del usuario.
-     * @param rol Nombre del rol a validar.
-     * @return true si el usuario tiene el rol, false en caso contrario.
-     */
+
     //public boolean validarRol(Integer idUsuario, String rol);
 
     public String obtenerRolPorId(Integer id);

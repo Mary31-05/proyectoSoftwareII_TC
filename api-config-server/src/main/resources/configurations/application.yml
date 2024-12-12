@@ -1,9 +1,9 @@
 eureka:
   instance:
-    hostname: localhost
+    hostname: api-config-server
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://api-discovey:8761/eureka
 spring:
   cloud:
     config:

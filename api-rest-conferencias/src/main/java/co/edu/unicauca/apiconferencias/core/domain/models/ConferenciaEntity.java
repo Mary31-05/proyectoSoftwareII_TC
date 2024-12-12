@@ -9,11 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ConferenciaEntity {
+    @Getter
     private Integer id;
+    @Getter
     private String nombre;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private String ubicacion;
+    @Getter
     private List<Integer> articulos;
 
     public ConferenciaEntity() {
@@ -27,6 +30,8 @@ public class ConferenciaEntity {
         this.ubicacion = builder.ubicacion;
         this.articulos = builder.articulos;
     }
+
+
 
     // Builder estático
     public static class Builder {

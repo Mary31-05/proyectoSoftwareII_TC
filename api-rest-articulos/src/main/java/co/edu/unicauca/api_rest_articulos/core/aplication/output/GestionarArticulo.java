@@ -4,6 +4,7 @@ import java.util.List;
 
 import co.edu.unicauca.api_rest_articulos.core.domain.modelos.Articulo;
 
+
 public interface GestionarArticulo {
 /**
      * Obtiene todos los artículos disponibles.

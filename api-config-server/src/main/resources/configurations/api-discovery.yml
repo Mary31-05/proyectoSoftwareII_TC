@@ -1,6 +1,6 @@
 eureka:
   instance:
-    hostname: localhost
+    hostname: api-discovery
   client:
     registerWithEureka: false
     fetchRegistry: false

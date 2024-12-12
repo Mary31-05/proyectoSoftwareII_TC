@@ -17,7 +17,7 @@ import org.springframework.http.ResponseEntity;
 @Service
 public class UsuarioService {
     
-    private final String USUARIOS_API_URL = "http://localhost:8050/api/usuarios/";
+    private final String USUARIOS_API_URL = "http://api-rest-usuario:8050/api/usuarios/";
     private final RestTemplate restTemplate;
 
     public UsuarioService(RestTemplateBuilder restTemplateBuilder) {

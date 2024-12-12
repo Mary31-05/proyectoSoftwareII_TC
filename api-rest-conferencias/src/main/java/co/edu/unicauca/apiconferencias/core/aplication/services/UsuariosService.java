@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class UsuariosService {
     
-    private final String USUARIOS_API_URL = "http://localhost:8222/api/usuarios";
+    private final String USUARIOS_API_URL = "http://api-gateway:8222/api/usuarios";
     private final RestTemplate restTemplate;
 
     public UsuariosService(RestTemplateBuilder restTemplateBuilder) {
