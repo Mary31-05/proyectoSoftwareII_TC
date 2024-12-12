@@ -1,85 +1,131 @@
 {
-    "configurations": [
-        
-        {
-            "type": "java",
-            "name": "CoreApplication",
-            "request": "launch",
-            "mainClass": "co.edu.unicauca.api_rest_articulos.core.CoreApplication",
-            "projectName": "co.edu.unicauca.api_rest_articulos-core"
-        },
-        {
-            "type": "java",
-            "name": "CoreApplication",
-            "request": "launch",
-            "mainClass": "co.edu.unicauca.api_rest_articulos.core.CoreApplication",
-            "projectName": "core"
-        },
-        {
-            "type": "java",
-            "name": "ConfigServerApplication",
-            "request": "launch",
-            "mainClass": "com.configserver.ConfigServerApplication",
-            "projectName": "config-server"
-        },
-        {
-            "type": "java",
-            "name": "CoreApplication",
-            "request": "launch",
-            "mainClass": "co.edu.unicauca.apiusuarios.core.CoreApplication",
-            "projectName": "co.edu.unicauca.apiusuarios-core"
-        },
-        {
-            "type": "java",
-            "name": "ApiGatewayApplication",
-            "request": "launch",
-            "mainClass": "co.edu.unicauca.apigateway.core.ApiGatewayApplication",
-            "projectName": "api_gateway"
-        },
-        {
-            "type": "java",
-            "name": "ApiGatewayApplication",
-            "request": "launch",
-            "mainClass": "co.apigateway.api_gateway.ApiGatewayApplication",
-            "projectName": ""
-        },
-        {
-            "type": "java",
-            "name": "ApiGatewayApplication",
-            "request": "launch",
-            "mainClass": "co.edu.unicauca.apigateway.core.api_gateway.ApiGatewayApplication",
-            "projectName": ""
-        },
-        {
-            "type": "java",
-            "name": "ProyectoApiGatewayApplication",
-            "request": "launch",
-            "mainClass": "co.edu.unicauca.apigateway.core.proyecto_api_gateway.ProyectoApiGatewayApplication",
-            "projectName": ""
-        },
-        {
-            "type": "java",
-            "name": "ApiGatewayApplication",
-            "request": "launch",
-            "mainClass": "ApiGatewayApplication",
-            "projectName": "api-gateway"
-        },
-        {
-            "type": "java",
-            "name": "ApiGatewayApplication",
-            "request": "launch",
-            "mainClass": "co.edu.unicauca.apiGateway.ApiGatewayApplication",
-            "projectName": "api-gateway"
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-ApiGatewayApplication<api-gateway>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "apiGateway.api_gateway.ApiGatewayApplication",
-            "projectName": "api-gateway",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env"
-        }
-    ]
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CoreApplication",
+      "request": "launch",
+      "mainClass": "co.edu.unicauca.apiconferencias.core.CoreApplication",
+      "projectName": "co.edu.unicauca.apiconferencias-core"
+    },
+    {
+      "type": "java",
+      "name": "CoreApplication",
+      "request": "launch",
+      "mainClass": "co.edu.unicauca.api_rest_articulos.core.CoreApplication",
+      "projectName": "co.edu.unicauca.api_rest_articulos-core"
+    },
+    {
+      "type": "java",
+      "name": "CoreApplication",
+      "request": "launch",
+      "mainClass": "co.edu.unicauca.api_rest_articulos.core.CoreApplication",
+      "projectName": "core"
+    },
+    {
+      "type": "java",
+      "name": "ConfigServerApplication",
+      "request": "launch",
+      "mainClass": "com.configserver.ConfigServerApplication",
+      "projectName": "config-server"
+    },
+    {
+      "type": "java",
+      "name": "CoreApplication",
+      "request": "launch",
+      "mainClass": "co.edu.unicauca.apiusuarios.core.CoreApplication",
+      "projectName": "co.edu.unicauca.apiusuarios-core"
+    },
+    {
+      "type": "java",
+      "name": "ApiGatewayApplication",
+      "request": "launch",
+      "mainClass": "co.edu.unicauca.apigateway.core.ApiGatewayApplication",
+      "projectName": "api_gateway"
+    },
+    {
+      "type": "java",
+      "name": "ApiGatewayApplication",
+      "request": "launch",
+      "mainClass": "co.apigateway.api_gateway.ApiGatewayApplication",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "ApiGatewayApplication",
+      "request": "launch",
+      "mainClass": "co.edu.unicauca.apigateway.core.api_gateway.ApiGatewayApplication",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "ProyectoApiGatewayApplication",
+      "request": "launch",
+      "mainClass": "co.edu.unicauca.apigateway.core.proyecto_api_gateway.ProyectoApiGatewayApplication",
+      "projectName": ""
+    },
+    {
+      "type": "java",
+      "name": "ApiGatewayApplication",
+      "request": "launch",
+      "mainClass": "ApiGatewayApplication",
+      "projectName": "api-gateway"
+    },
+    {
+      "type": "java",
+      "name": "ApiGatewayApplication",
+      "request": "launch",
+      "mainClass": "co.edu.unicauca.apiGateway.ApiGatewayApplication",
+      "projectName": "api-gateway"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ApiGatewayApplication<api-gateway>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "apiGateway.api_gateway.ApiGatewayApplication",
+      "projectName": "api-gateway",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ConfigServerApplication<com.configserver-api-config-server>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.configserver.ConfigServerApplication",
+      "projectName": "com.configserver-api-config-server",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-DiscoveryApplication<com.discovery-api-discovery>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.discovery.DiscoveryApplication",
+      "projectName": "com.discovery-api-discovery",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-ApiGatewayApplication<com-api-gateway>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.apigateway.ApiGatewayApplication",
+      "projectName": "com-api-gateway",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-CoreApplication<co.edu.unicauca.api_rest_articulos-api-rest-articulos>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "co.edu.unicauca.api_rest_articulos.core.CoreApplication",
+      "projectName": "co.edu.unicauca.api_rest_articulos-api-rest-articulos",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
 }

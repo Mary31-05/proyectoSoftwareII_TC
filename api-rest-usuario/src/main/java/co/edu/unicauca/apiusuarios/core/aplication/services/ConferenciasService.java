@@ -16,25 +16,29 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class ConferenciasService {
-    
+
     @Autowired
     private WebClient.Builder webClientBuilder;
+
     /**
      * Obtiene las conferencias asociadas a un usuario dado su ID.
      *
      * @param idUsuario ID del usuario cuyas conferencias se desean obtener.
      * @return Lista de objetos ConferenciaDTO que representan las conferencias
-     *         asociadas al usuario. Si no hay conferencias, devuelve una lista vacía.
+     *         asociadas al usuario. Si no hay conferencias, devuelve una lista
+     *         vacía.
      */
     public List<ConferenciaDTO> obtenerConferenciasDeUsuario(Integer idUsuario) {
-        String url = "http://localhost:1000/api/conferencias/usuario/" + idUsuario;
-        // Realiza una solicitud GET al servicio de conferencias y obtiene la respuesta como un array de ConferenciaDTO
+        String url = "http://api-rest-conferencias:8070/api/conferencias/usuario/" + idUsuario;
+        // Realiza una solicitud GET al servicio de conferencias y obtiene la respuesta
+        // como un array de ConferenciaDTO
         Mono<ConferenciaDTO[]> response = webClientBuilder.build()
                 .get()
                 .uri(url)
                 .retrieve()
                 .bodyToMono(ConferenciaDTO[].class);
-         // Bloquea la ejecución hasta que se obtenga la respuesta y convierte el array en una lista
+        // Bloquea la ejecución hasta que se obtenga la respuesta y convierte el array
+        // en una lista
         ConferenciaDTO[] conferenciasArray = response.block();
         return conferenciasArray != null ? List.of(conferenciasArray) : List.of();
     }

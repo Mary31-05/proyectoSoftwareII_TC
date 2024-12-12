@@ -16,8 +16,8 @@ import org.springframework.http.ResponseEntity;
  */
 @Service
 public class UsuarioService {
-    
-    private final String USUARIOS_API_URL = "http://localhost:8050/api/usuarios/";
+
+    private final String USUARIOS_API_URL = "http://api-rest-usuario:8050/api/usuarios/";
     private final RestTemplate restTemplate;
 
     public UsuarioService(RestTemplateBuilder restTemplateBuilder) {
@@ -25,32 +25,31 @@ public class UsuarioService {
     }
 
     public boolean validarPermisoCrearArticulo(String token) {
-       // Configurar el encabezado Authorization con el Bearer token
-       HttpHeaders headers = new HttpHeaders();
-       headers.set("Authorization", "Bearer " + token);
+        // Configurar el encabezado Authorization con el Bearer token
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
 
-       // Crear la entidad HTTP con los encabezados
-       HttpEntity<String> entity = new HttpEntity<>(headers);
+        // Crear la entidad HTTP con los encabezados
+        HttpEntity<String> entity = new HttpEntity<>(headers);
 
-       try {
-           // Realizar la llamada GET al endpoint /permisos
-           ResponseEntity<List> response = restTemplate.exchange(
-                   USUARIOS_API_URL+"/permisos",  // URL de tu API
-                   HttpMethod.GET,
-                   entity,
-                   List.class
-           );
+        try {
+            // Realizar la llamada GET al endpoint /permisos
+            ResponseEntity<List> response = restTemplate.exchange(
+                    USUARIOS_API_URL + "/permisos", // URL de tu API
+                    HttpMethod.GET,
+                    entity,
+                    List.class);
 
-           // Verificar la respuesta
-           List<String> permisos = response.getBody();
-           if (permisos != null && permisos.contains("CREAR_ARTICULO")) {
-               return true; // El usuario tiene permiso
-           }
-       } catch (Exception e) {
-           throw new RuntimeException("Error al validar permisos: " + e.getMessage());
-       }
+            // Verificar la respuesta
+            List<String> permisos = response.getBody();
+            if (permisos != null && permisos.contains("CREAR_ARTICULO")) {
+                return true; // El usuario tiene permiso
+            }
+        } catch (Exception e) {
+            throw new RuntimeException("Error al validar permisos: " + e.getMessage());
+        }
 
-       return false; // No tiene permiso
+        return false; // No tiene permiso
     }
 
 }
