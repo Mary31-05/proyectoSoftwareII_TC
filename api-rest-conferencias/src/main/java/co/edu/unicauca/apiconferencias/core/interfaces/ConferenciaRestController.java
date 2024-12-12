@@ -44,6 +44,13 @@ public class ConferenciaRestController {
 		return objConferencia;
 	}
 
+    @GetMapping("/nombre/{nombre}")
+	public ConferenciaDTO consultarConferenciaNombre(@PathVariable String nombre) {
+		ConferenciaDTO objConferencia = null;
+		objConferencia = ConferenciaService.findByNombre(nombre);
+		return objConferencia;
+	}
+
     /**
      * Endpoint para crear una nueva conferencia.
      *
@@ -111,6 +118,7 @@ public class ConferenciaRestController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(false);
         }
     }
+
 }
 
 

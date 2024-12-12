@@ -47,4 +47,7 @@ public interface IConferenciaService {
      * @return true si la conferencia fue eliminada exitosamente, false de lo contrario.
      */
 	public boolean delete(Integer id);
+
+     
+     public ConferenciaDTO findByNombre(String nombre);
 }

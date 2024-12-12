@@ -71,4 +71,11 @@ public class ConferenciaServiceImpl implements IConferenciaService {
     public boolean delete(Integer id) {
         return this.servicioAccesoBaseDatos.delete(id);
     }
+
+    @Override
+    public ConferenciaDTO findByNombre(String nombre) {
+        ConferenciaEntity objConferenciaEntity = this.servicioAccesoBaseDatos.findByNombre(nombre);
+		ConferenciaDTO conferenciaDTO = this.modelMapper.map(objConferenciaEntity, ConferenciaDTO.class);
+		return conferenciaDTO;
+    }
 }

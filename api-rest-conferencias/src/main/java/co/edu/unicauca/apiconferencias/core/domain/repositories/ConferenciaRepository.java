@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Repository;
 
+import co.edu.unicauca.apiconferencias.core.aplication.DTO.ConferenciaDTO;
 import co.edu.unicauca.apiconferencias.core.domain.models.ConferenciaEntity;
 
 @Repository
@@ -112,7 +113,7 @@ public class ConferenciaRepository {
 
         ConferenciaEntity objConferencias3 = new ConferenciaEntity.Builder()
                 .withId(3)
-                .withNombre("Innovación Tecnológica")
+                .withNombre("Innovacion Tecnologica")
                 .withFechaInicio(LocalDate.of(2024, 11, 15))
                 .withFechaFin(LocalDate.of(2024, 11, 17))
                 .withUbicacion("Sala C")
@@ -121,11 +122,25 @@ public class ConferenciaRepository {
 
         ConferenciaEntity objConferencias4 = new ConferenciaEntity.Builder()
                 .withId(4)
-                .withNombre("Educación en la Era Digital")
+                .withNombre("Educacion en la Era Digital")
                 .withFechaInicio(LocalDate.of(2024, 12, 1))
                 .withFechaFin(LocalDate.of(2024, 12, 3))
                 .withUbicacion("Sala D")
                 .build();
         listaDeConferencias.add(objConferencias4);
+    }
+
+    public ConferenciaEntity findByNombre(String nombre) {
+        System.out.println("Invocando a consultar una conferencia por nombre");
+		ConferenciaEntity objConferencia = null;
+	
+		for (ConferenciaEntity conferencia : listaDeConferencias) {
+			// Cambia la comparación para usar el nombre de la conferencia
+			if (conferencia.getNombre().equalsIgnoreCase(nombre)) {
+				objConferencia = conferencia;
+				break;
+			}
+		}
+		return objConferencia;
     }
 }
