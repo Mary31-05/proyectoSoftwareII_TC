@@ -19,7 +19,6 @@
         <module name="api-gateway" />
         <module name="core" />
         <module name="api-config-server" />
-        <module name="core (1) (co.edu.unicauca.apiconferencias)" />
         <module name="core (2) (co.edu.unicauca.apiusuarios)" />
         <module name="api-discovery" />
       </profile>
@@ -34,6 +33,15 @@
         </processorPath>
         <module name="api-rest-articulos" />
         <module name="core (1) (co.edu.unicauca.api_rest_articulos)" />
+      </profile>
+      <profile name="Annotation profile for api-rest-conferencias" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar" />
+        </processorPath>
+        <module name="core (1) (co.edu.unicauca.apiconferencias)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

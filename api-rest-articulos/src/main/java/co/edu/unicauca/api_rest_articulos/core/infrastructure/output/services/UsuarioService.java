@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
 /**
  * Servicio para la gestión de usuarios en el sistema.
  * 
@@ -17,8 +18,8 @@ import org.springframework.web.client.RestTemplate;
  */
 @Service
 public class UsuarioService {
-    
-    private final String USUARIOS_API_URL = "http://localhost:8050/api/usuarios/";
+
+    private final String USUARIOS_API_URL = "http://api-rest-usuario:8050/api/usuarios/";
     private final RestTemplate restTemplate;
 
     public UsuarioService(RestTemplateBuilder restTemplateBuilder) {

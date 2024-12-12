@@ -1,6 +1,5 @@
 package co.edu.unicauca.apiconferencias.core.aplication.services;
 
-
 import java.util.List;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -10,16 +9,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-
-
 /**
- * Servicio que se encarga de realizar operaciones relacionadas con los usuarios.
- * Esta clase interactúa con un microservicio de usuarios a través de llamadas HTTP.
+ * Servicio que se encarga de realizar operaciones relacionadas con los
+ * usuarios.
+ * Esta clase interactúa con un microservicio de usuarios a través de llamadas
+ * HTTP.
  */
 @Service
 public class UsuariosService {
-    
-    private final String USUARIOS_API_URL = "http://localhost:8050/api/usuarios/";
+
+    private final String USUARIOS_API_URL = "http://api-rest-usuario:8050/api/usuarios/";
     private final RestTemplate restTemplate;
 
     public UsuariosService(RestTemplateBuilder restTemplateBuilder) {
