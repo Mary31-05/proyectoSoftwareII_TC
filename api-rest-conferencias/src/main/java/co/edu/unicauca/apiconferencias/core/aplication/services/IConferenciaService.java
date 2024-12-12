@@ -20,13 +20,13 @@ public interface IConferenciaService {
      */
     public ConferenciaDTO findById(Integer id);
 	/**
-     * Guarda una nueva conferencia en la base de datos.
-     * Requiere que el usuario que realiza la operación tenga el rol de "ORGANIZADOR".
-     * @param conferencia el DTO de la conferencia a guardar.
-     * @param idUsuario el ID del usuario que intenta crear la conferencia.
-     * @return un objeto ConferenciaDTO que representa la conferencia guardada.
-     */
-	public ConferenciaDTO save(ConferenciaDTO conferencia, Integer idUsuario);
+	 * Guarda una nueva conferencia en la base de datos.
+	 * Requiere que el usuario que realiza la operación tenga el rol de "ORGANIZADOR".
+	 * @param conferencia el DTO de la conferencia a guardar.
+	 * @param token
+	 * @return un objeto ConferenciaDTO que representa la conferencia guardada.
+	 */
+	public ConferenciaDTO save(ConferenciaDTO conferencia, String token);
 	/**
      * Actualiza una conferencia existente en la base de datos.
      * @param id el ID de la conferencia a actualizar.

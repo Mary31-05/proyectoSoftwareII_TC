@@ -7,7 +7,11 @@ package co.edu.unicauca.apiusuarios.core.interfaces;
 
 
 import co.edu.unicauca.apiusuarios.core.aplication.services.IUsuarioService;
+import co.edu.unicauca.apiusuarios.core.domain.models.IUsuarioEntity;
+import co.edu.unicauca.apiusuarios.core.domain.models.UsuarioBaseImpl;
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
+import utils.TokenUtils;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,18 +29,57 @@ public class UsuarioRestController {
     @Autowired
     private IUsuarioService usuarioService;
 
-    @GetMapping("/permisos")
-    public String obtenerPermisos(@RequestParam Integer id) {
-        return usuarioService.obtenerPermisosDeUsuario(id).toString();
+    private  IUsuarioEntity usuarioDecorado = new UsuarioBaseImpl();
+
+
+    @GetMapping("/user-info")
+    public IUsuarioEntity getUserInfo(@RequestHeader("Authorization") String authorizationHeader) {
+        try {
+            // Validar y extraer el token Bearer
+            if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+                throw new IllegalArgumentException("Invalid Authorization header");
+            }
+            String token = authorizationHeader.substring(7); // Quitar el prefijo "Bearer "
+
+            IUsuarioEntity usuario = new UsuarioBaseImpl();
+            // Extraer la información del token
+            usuario = TokenUtils.extractUserInfoFromToken(token);
+
+           usuarioDecorado = usuarioService.decorarUsuario(usuario);
+
+            return usuarioDecorado;
+        } catch (Exception e) {
+            throw new RuntimeException("Error al procesar el token: " + e.getMessage());
+        }
     }
 
-    @GetMapping("/{id}/permisos")
-    public ResponseEntity<List<String>> obtenerPermisos2(@PathVariable Integer id) {
-        List<String> permisos = usuarioService.obtenerPermisosDeUsuario(id);
-        if (permisos.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+
+    @GetMapping("/permisos")
+    public ResponseEntity<List<String>> obtenerPermisos2(@RequestHeader("Authorization") String authorizationHeader) {
+
+        try {
+            // Validar y extraer el token Bearer
+            if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+                throw new IllegalArgumentException("Invalid Authorization header");
+            }
+            String token = authorizationHeader.substring(7); // Quitar el prefijo "Bearer "
+
+            IUsuarioEntity usuario = new UsuarioBaseImpl();
+            // Extraer la información del token
+            usuario = TokenUtils.extractUserInfoFromToken(token);
+
+           usuarioDecorado = usuarioService.decorarUsuario(usuario);
+
+           List<String> permisos = usuarioDecorado.getPermisos();
+
+           if (permisos.isEmpty()) {
+               return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+           }
+           return ResponseEntity.ok(permisos);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al procesar el token: " + e.getMessage());
         }
-        return ResponseEntity.ok(permisos);
+
     }
 
     @GetMapping("/{id}/rol")

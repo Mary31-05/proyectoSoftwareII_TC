@@ -33,7 +33,7 @@ public class ArticuloDTO {
     /**
      * Lista de identificadores de los autores que contribuyeron al artículo.
      */
-    private List<Integer> autores;
+    private List<String> autores;
     /**
      * Objeto `ConferenciaDTO` que representa la conferencia a la cual se presenta el artículo.
      */

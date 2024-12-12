@@ -10,7 +10,7 @@ public interface ArticuloRepositoryInt {
 
 	public ArticuloEntity exist(Integer id);
 
-	public ArticuloEntity save(ArticuloEntity objArticulo, Integer idUsuario);
+	public ArticuloEntity save(ArticuloEntity objArticulo);
 	/**
      * Actualiza la información de un artículo existente.
      * 

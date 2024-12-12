@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 
 @RestController
@@ -57,10 +58,15 @@ public class ArticuloRestController {
     }
 
     @PostMapping("/articulos")
-    public ResponseEntity<ArticuloDTO> crearArticulo(@RequestBody ArticuloDTO articuloDTO, @RequestParam Integer idUsuario) {
+    public Articulo crearArticulo(@RequestBody ArticuloDTO articuloDTO, @RequestHeader("Authorization") String authorizationHeader) {
+        // Extraer el Bearer Token del encabezado Authorization
+        String token = authorizationHeader.replace("Bearer ", "");
+
+        
         Articulo articulo = articuloMapper.mappearDePeticion_Articulo(articuloDTO);
-        Articulo articuloCreado = articuloService.save(articulo, idUsuario);
-        return ResponseEntity.status(HttpStatus.CREATED).body(articuloMapper.mappearDeArticuloARespuesta(articuloCreado));
+        Articulo articuloCreado = articuloService.save(articulo, token);
+        
+        return articuloCreado;
     }
      /**
      * Actualiza la información de un artículo existente.

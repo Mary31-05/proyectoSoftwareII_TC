@@ -86,7 +86,7 @@ public class ArticuloRepository implements ArticuloRepositoryInt {
      */
 
     @Override
-    public ArticuloEntity save(ArticuloEntity articulo, Integer idUsuario) {
+    public ArticuloEntity save(ArticuloEntity articulo) {
         System.out.println("Invocando a almacenar un articulo");
         ArticuloEntity objArticulo = null;
         if (this.listaDeArticulos.add(articulo)) {
@@ -143,13 +143,22 @@ public class ArticuloRepository implements ArticuloRepositoryInt {
      * Método privado que carga algunos artículos de ejemplo.
      */
     private void CargarArticulos() {
-        ArticuloEntity objArticulo1 = new ArticuloEntity(1, "IA en la actualidad", "Resumen del artículo sobre IA", "IA, Tecnología, Futuro", new ArrayList<>(), new ConferenciaDTO(1));
+        List<String> autores1 = new ArrayList<>();
+        autores1.add("67966bde-af2d-4914-8f4d-5856667d1dc0");
+
+        List<String> autores2 = new ArrayList<>();
+        autores2.add("f646bcb6-bd65-4187-993d-72fcf0d199bc");
+
+        List<String> autores3 = new ArrayList<>();
+        autores3.add("94439095-9bff-4e91-8c08-c41857c8a861");
+
+        ArticuloEntity objArticulo1 = new ArticuloEntity(1, "IA en la actualidad", "Resumen del artículo sobre IA", "IA, Tecnología, Futuro", autores1, new ConferenciaDTO(1));
         this.listaDeArticulos.add(objArticulo1);
 
-        ArticuloEntity objArticulo2 = new ArticuloEntity(2, "Ingeniería de software", "Resumen del artículo sobre ingeniería de software", "Software, Ingeniería, Desarrollo", new ArrayList<>(), new ConferenciaDTO(2));
+        ArticuloEntity objArticulo2 = new ArticuloEntity(2, "Ingeniería de software", "Resumen del artículo sobre ingeniería de software", "Software, Ingeniería, Desarrollo", autores2, new ConferenciaDTO(2));
         this.listaDeArticulos.add(objArticulo2);
 
-        ArticuloEntity objArticulo3 = new ArticuloEntity(3, "Tecnología", "Resumen del artículo sobre tecnología", "Tecnología, Innovación", new ArrayList<>(), new ConferenciaDTO(3));
+        ArticuloEntity objArticulo3 = new ArticuloEntity(3, "Tecnología", "Resumen del artículo sobre tecnología", "Tecnología, Innovación", autores3 , new ConferenciaDTO(3));
         this.listaDeArticulos.add(objArticulo3);
     }
 

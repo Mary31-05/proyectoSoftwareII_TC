@@ -30,9 +30,9 @@ public class GestionarArticuloGateway implements GestionarArticulo{
     }
 
     @Override
-    public Articulo save(Articulo articulo, Integer idUsuario) {
+    public Articulo save(Articulo articulo) {
         ArticuloEntity objArticuloEntity = this.articuloModelMapper.map(articulo, ArticuloEntity.class);
-        ArticuloEntity objArticuloEntityRegistrado = this.objArticuloRepository.save(objArticuloEntity, idUsuario);
+        ArticuloEntity objArticuloEntityRegistrado = this.objArticuloRepository.save(objArticuloEntity);
         return this.articuloModelMapper.map(objArticuloEntityRegistrado, Articulo.class);
     }
     
@@ -40,7 +40,7 @@ public class GestionarArticuloGateway implements GestionarArticulo{
     @Override
     public Articulo update(Integer id, Articulo articulo) {
         ArticuloEntity objArticuloEntity = this.articuloModelMapper.map(articulo, ArticuloEntity.class);
-        ArticuloEntity objArticuloEntityActualizado = this.objArticuloRepository.save(objArticuloEntity, id);
+        ArticuloEntity objArticuloEntityActualizado = this.objArticuloRepository.save(objArticuloEntity);
         return this.articuloModelMapper.map(objArticuloEntityActualizado, Articulo.class);
     }
 

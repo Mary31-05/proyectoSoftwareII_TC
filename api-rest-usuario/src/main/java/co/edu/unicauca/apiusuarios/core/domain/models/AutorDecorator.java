@@ -13,6 +13,7 @@ public class AutorDecorator extends UsuarioDecoratorAbs {
         List<String> permisos = super.getPermisos();
         permisos.add("CREAR_ARTICULO");
         permisos.add("DELETE_ARTICULO");
+        permisos.add("LISTAR_CONFERENCIA");
         return permisos;
     }
     

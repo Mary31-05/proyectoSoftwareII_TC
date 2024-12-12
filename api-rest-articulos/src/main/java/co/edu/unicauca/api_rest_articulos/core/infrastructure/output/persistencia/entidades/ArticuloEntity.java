@@ -20,7 +20,7 @@ public class ArticuloEntity {
      * Lista de identificadores de los autores del artículo.
      * Cada autor está representado por su ID.
      */
-    private List<Integer> autores;
+    private List<String> autores;
     /**
      * Objeto que representa la conferencia en la que se presentó o se presentará el artículo.
      */

@@ -23,11 +23,10 @@ import java.util.List;
  */
 
 public interface IUsuarioEntity {
-    Integer getId();
+    String getId();
     String getNombre();
-    String getApellido();
+    String getUser();
     String getCorreo();
-    String getPassword();
     String getRol();
     List<String> getPermisos();
 

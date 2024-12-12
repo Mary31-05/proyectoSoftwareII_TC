@@ -52,7 +52,7 @@ public class RevisionServiceImpl implements IRevisionService{
 
     @Override
     public Revision save(Revision revision, Integer idUsuario) {
-        if (!objUsuarioService.validarPermisoCrearArticulo(idUsuario)) {
+      /*   if (!objUsuarioService.validarPermisoCrearArticulo(idUsuario)) {
             throw new RuntimeException("El usuario no tiene permisos para crear una revisión");
         }
 
@@ -66,7 +66,8 @@ public class RevisionServiceImpl implements IRevisionService{
         if (guardado == null) {
             return objRevisionFormateador.prepararRespuestaFallida("Error al guardar la revisión");
         }
-        return guardado;
+        return guardado;*/
+        return null;
     }
 
     @Override
@@ -87,11 +88,12 @@ public class RevisionServiceImpl implements IRevisionService{
     @Override
     public Revision agregarComentario(Integer idRevision, Integer idEvaluador, String comentario) {
                 // Validar rol del evaluador
-                if (!objUsuarioService.validarPermisoCrearArticulo(idEvaluador)) {
+                /*if (!objUsuarioService.validarPermisoCrearArticulo(idEvaluador)) {
                     throw new RuntimeException("El usuario no tiene permisos para evaluar el artículo");
                 }
         
-                return objGestionarRevision.agregarComentario(idRevision, idEvaluador, comentario);
+                return objGestionarRevision.agregarComentario(idRevision, idEvaluador, comentario);*/
+                return null;
     }
 
     @Override

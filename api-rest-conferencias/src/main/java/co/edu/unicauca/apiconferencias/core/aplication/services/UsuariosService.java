@@ -4,10 +4,8 @@ package co.edu.unicauca.apiconferencias.core.aplication.services;
 import java.util.List;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -19,28 +17,39 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class UsuariosService {
     
-    private final String USUARIOS_API_URL = "http://localhost:8050/api/usuarios/";
+    private final String USUARIOS_API_URL = "http://localhost:8222/api/usuarios";
     private final RestTemplate restTemplate;
 
     public UsuariosService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public boolean validarPermisoCrearConferencia(Integer idUsuario) {
-        String url = USUARIOS_API_URL + idUsuario + "/permisos";
+    public boolean validarPermisoCrearConferencia(String token) {
+        // Configurar el encabezado Authorization con el Bearer token
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", "Bearer " + token);
+
+        // Crear la entidad HTTP con los encabezados
+        HttpEntity<String> entity = new HttpEntity<>(headers);
 
         try {
-            ResponseEntity<List> response = restTemplate.getForEntity(url, List.class);
+            // Realizar la llamada GET al endpoint /permisos
+            ResponseEntity<List> response = restTemplate.exchange(
+                    USUARIOS_API_URL+"/permisos",  // URL de tu API
+                    HttpMethod.GET,
+                    entity,
+                    List.class
+            );
 
-            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-                List<String> permisos = response.getBody();
-                return permisos.contains("CREAR_CONFERENCIA");
+            // Verificar la respuesta
+            List<String> permisos = response.getBody();
+            if (permisos != null && permisos.contains("LISTAR_CONFERENCIA")) {
+                return true; // El usuario tiene permiso
             }
-        } catch (HttpClientErrorException e) {
-            // Manejar el caso donde el usuario no existe o no tiene permisos
-            System.out.println("Error al obtener permisos: " + e.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("Error al validar permisos: " + e.getMessage());
         }
 
-        return false;
+        return false; // No tiene permiso
     }
 }

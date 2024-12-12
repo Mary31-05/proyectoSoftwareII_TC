@@ -69,5 +69,7 @@ public interface IUsuarioService {
     public List<String> obtenerPermisosDeUsuario(Integer id);
 
     public boolean puedeRealizarAccion(IUsuarioEntity usuario, String accion);
+    public IUsuarioEntity decorarUsuario(IUsuarioEntity usuario);
+    
 }
 

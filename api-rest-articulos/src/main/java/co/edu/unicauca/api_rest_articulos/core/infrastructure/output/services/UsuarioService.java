@@ -1,13 +1,12 @@
 package co.edu.unicauca.api_rest_articulos.core.infrastructure.output.services;
 
 import java.util.List;
-
 import org.springframework.boot.web.client.RestTemplateBuilder;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.http.ResponseEntity;
+
 /**
  * Servicio para la gestión de usuarios en el sistema.
  * 
@@ -25,21 +24,33 @@ public class UsuarioService {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public boolean validarPermisoCrearArticulo(Integer idUsuario) {
-        String url = USUARIOS_API_URL + idUsuario + "/permisos";
+    public boolean validarPermisoCrearArticulo(String token) {
+       // Configurar el encabezado Authorization con el Bearer token
+       HttpHeaders headers = new HttpHeaders();
+       headers.set("Authorization", "Bearer " + token);
 
-        try {
-            ResponseEntity<List> response = restTemplate.getForEntity(url, List.class);
+       // Crear la entidad HTTP con los encabezados
+       HttpEntity<String> entity = new HttpEntity<>(headers);
 
-            if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-                List<String> permisos = response.getBody();
-                return permisos.contains("CREAR_ARTICULO");
-            }
-        } catch (HttpClientErrorException e) {
-            // Manejar el caso donde el usuario no existe o no tiene permisos
-            System.out.println("Error al obtener permisos: " + e.getMessage());
-        }
+       try {
+           // Realizar la llamada GET al endpoint /permisos
+           ResponseEntity<List> response = restTemplate.exchange(
+                   USUARIOS_API_URL+"/permisos",  // URL de tu API
+                   HttpMethod.GET,
+                   entity,
+                   List.class
+           );
 
-        return false;
+           // Verificar la respuesta
+           List<String> permisos = response.getBody();
+           if (permisos != null && permisos.contains("CREAR_ARTICULO")) {
+               return true; // El usuario tiene permiso
+           }
+       } catch (Exception e) {
+           throw new RuntimeException("Error al validar permisos: " + e.getMessage());
+       }
+
+       return false; // No tiene permiso
     }
+
 }

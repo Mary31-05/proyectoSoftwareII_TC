@@ -31,7 +31,7 @@ public interface GestionarArticulo {
      * @param idUsuario Identificador del usuario que está guardando el artículo.
      * @return El objeto `ArticuloDTO` que representa el artículo guardado, incluyendo su identificador.
      */
-	public Articulo save(Articulo articulo, Integer idUsuario);
+	public Articulo save(Articulo articulo);
 	/**
      * Actualiza la información de un artículo existente.
      * 

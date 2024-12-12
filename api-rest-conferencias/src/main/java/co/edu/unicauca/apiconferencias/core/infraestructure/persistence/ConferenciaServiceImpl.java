@@ -41,9 +41,9 @@ public class ConferenciaServiceImpl implements IConferenciaService {
     }
 
     @Override
-    public ConferenciaDTO save(ConferenciaDTO conferencia, Integer idUsuario) {
+    public ConferenciaDTO save(ConferenciaDTO conferencia, String token) {
         // Validar rol del usuario
-        if (!usuarioService.validarPermisoCrearConferencia(idUsuario)) {
+        if (!usuarioService.validarPermisoCrearConferencia(token)) {
             throw new RuntimeException("El usuario no tiene permisos para crear conferencias");
         }
         ConferenciaEntity conferenciaEntity = this.modelMapper.map(conferencia, ConferenciaEntity.class);

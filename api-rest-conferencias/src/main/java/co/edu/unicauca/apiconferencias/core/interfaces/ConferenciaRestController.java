@@ -47,16 +47,19 @@ public class ConferenciaRestController {
     /**
      * Endpoint para crear una nueva conferencia.
      *
-     * @param conferencia Objeto ConferenciaDTO con los datos de la conferencia a crear.
-     * @param idUsuario Identificador del usuario que crea la conferencia.
+     * @param conferencia Objeto ConferenciaDTO con los datos de la conferencia a crear
      * @return Objeto ConferenciaDTO que representa la conferencia creada.
      */
     @PostMapping
-	public ConferenciaDTO crearConferencia(@RequestBody ConferenciaDTO conferencia, @RequestParam Integer idUsuario) {
-        ConferenciaDTO objConferencia = null;
-		objConferencia = ConferenciaService.save(conferencia, idUsuario);
-		return objConferencia;
-	}
+    public ConferenciaDTO crearConferencia(@RequestBody ConferenciaDTO conferencia, @RequestHeader("Authorization") String authorizationHeader) {
+        // Extraer el Bearer Token del encabezado Authorization
+        String token = authorizationHeader.replace("Bearer ", "");
+
+        // Ahora pasa el token al servicio
+        ConferenciaDTO objConferencia = ConferenciaService.save(conferencia, token);
+
+        return objConferencia;
+    }
 
     /**
      * Endpoint para actualizar una conferencia existente.

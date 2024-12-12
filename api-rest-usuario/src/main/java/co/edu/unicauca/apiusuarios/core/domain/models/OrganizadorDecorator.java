@@ -13,6 +13,7 @@ public class OrganizadorDecorator extends UsuarioDecoratorAbs {
         List<String> permisos = super.getPermisos();
         permisos.add("CREAR_CONFERENCIA");
         permisos.add("DELETE_CONFERENCIA");
+        permisos.add("LISTAR_CONFERENCIA");
         return permisos;
     }
 

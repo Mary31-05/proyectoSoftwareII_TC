@@ -57,7 +57,7 @@ public class UsuarioRepository {
      * @return Objeto UsuarioEntity si se encuentra el usuario, o null si no existe.
      */
     // Método para buscar un usuario por ID
-    public Optional<IUsuarioEntity> findById(Integer id) {
+    /*public Optional<IUsuarioEntity> findById(Integer id) {
         return listaDeUsuarios.stream()
                 .filter(Iusuario -> Iusuario.getId().equals(id)) // Compara por ID
                 .findFirst();
@@ -69,7 +69,7 @@ public class UsuarioRepository {
      * @param usuario Objeto UsuarioEntity con la información actualizada.
      * @return El usuario actualizado, o null si el usuario no se encontró.
      */
-    public IUsuarioEntity update(Integer id, IUsuarioEntity usuario){
+    /*public IUsuarioEntity update(Integer id, IUsuarioEntity usuario){
         System.out.println("Invocando a actualizar un usuario");
         IUsuarioEntity objUsuario = null;
 
@@ -89,7 +89,7 @@ public class UsuarioRepository {
      * @return true si el usuario fue eliminado, false si no se encontró.
      */
 
-    public boolean delete(Integer id){
+    /*public boolean delete(Integer id){
         System.out.println("Invocando a eliminar un usuario");
         boolean bandera = false;
 
@@ -110,11 +110,11 @@ public class UsuarioRepository {
 
     private void cargarUsuarios() {
 
-        listaDeUsuarios.add(new UsuarioBaseImpl(1, "Juan", "Pérez", "juan.perez@example.com", "1234", "ORGANIZADOR"));
+        //listaDeUsuarios.add(new UsuarioBaseImpl(1, "Juan", "Pérez", "juan.perez@example.com", "1234", "ORGANIZADOR"));
 
-        listaDeUsuarios.add(new UsuarioBaseImpl(2, "Ana", "Gómez", "ana.gomez@example.com", "1234", "AUTOR"));
+        //listaDeUsuarios.add(new UsuarioBaseImpl(2, "Ana", "Gómez", "ana.gomez@example.com", "1234", "AUTOR"));
 
-        listaDeUsuarios.add(new UsuarioBaseImpl(3, "Luis", "Martínez", "luis.martinez@example.com", "1234", "EVALUADOR"));
+        //listaDeUsuarios.add(new UsuarioBaseImpl(3, "Luis", "Martínez", "luis.martinez@example.com", "1234", "EVALUADOR"));
 
         /*IUsuarioEntity usuario1 = new IUsuarioEntity(1, "Juan", "Pérez", "juan.perez@example.com", "contraseña1", new RolEntity(1, "ORGANIZADOR"));
         this.listaDeUsuarios.add(usuario1);

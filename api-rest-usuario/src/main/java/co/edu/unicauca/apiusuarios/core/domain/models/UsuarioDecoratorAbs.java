@@ -9,6 +9,11 @@ public abstract class UsuarioDecoratorAbs implements IUsuarioEntity {
     public UsuarioDecoratorAbs(IUsuarioEntity usuario) {
         this.usuario = usuario;
     }
+    
+    @Override
+    public String getId() {
+        return usuario.getId();
+    }
 
     @Override
     public String getNombre() {
@@ -16,18 +21,13 @@ public abstract class UsuarioDecoratorAbs implements IUsuarioEntity {
     }
 
     @Override
-    public String getApellido() {
-        return usuario.getApellido();
+    public String getUser() {
+        return usuario.getUser();
     }
 
     @Override
     public String getCorreo() {
         return usuario.getCorreo();
-    }
-
-    @Override
-    public String getPassword() {
-        return usuario.getPassword();
     }
 
     @Override
@@ -40,8 +40,5 @@ public abstract class UsuarioDecoratorAbs implements IUsuarioEntity {
         return usuario.getRol();
     }
 
-    @Override
-    public Integer getId() {
-        return usuario.getId();
-    }
+
 }

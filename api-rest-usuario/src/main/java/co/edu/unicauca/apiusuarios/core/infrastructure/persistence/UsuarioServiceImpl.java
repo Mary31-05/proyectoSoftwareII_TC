@@ -11,7 +11,6 @@ import co.edu.unicauca.apiusuarios.core.aplication.DTO.CRUDUsuariosDTO.UsuarioDT
 import co.edu.unicauca.apiusuarios.core.aplication.DTO.UsuariosConConferenciasDTO.ConferenciaDTO;
 import co.edu.unicauca.apiusuarios.core.aplication.services.ConferenciasService;
 import co.edu.unicauca.apiusuarios.core.aplication.services.IUsuarioService;
-import co.edu.unicauca.apiusuarios.core.domain.models.UsuarioBaseImpl;
 import co.edu.unicauca.apiusuarios.core.domain.models.OrganizadorDecorator;
 import co.edu.unicauca.apiusuarios.core.domain.models.AutorDecorator;
 import co.edu.unicauca.apiusuarios.core.domain.models.EvaluadorDecorator;
@@ -94,10 +93,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
      */
     @Override
     public UsuarioDTO update(Integer id, UsuarioDTO usuario) {
-        IUsuarioEntity usuarioEntity = this.modelMapper.map(usuario, IUsuarioEntity.class);
+        /*IUsuarioEntity usuarioEntity = this.modelMapper.map(usuario, IUsuarioEntity.class);
         IUsuarioEntity objUsuarioEntity = this.servicioAccesoBaseDatos.update(id, usuarioEntity);
         UsuarioDTO usuarioDTO = this.modelMapper.map(objUsuarioEntity, UsuarioDTO.class);
-        return usuarioDTO;
+        return usuarioDTO;*/
+        return null;
     }
     /**
      * Elimina un usuario por su ID.
@@ -107,7 +107,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
      */
     @Override
     public boolean delete(Integer id) {
-        return this.servicioAccesoBaseDatos.delete(id);
+        return false;//return this.servicioAccesoBaseDatos.delete(id);
     }
     /**
      * Lista las conferencias asociadas a un usuario.
@@ -123,14 +123,16 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
     @Override
     public String obtenerRolPorId(Integer id) {
-        return servicioAccesoBaseDatos.findById(id)
+        return null;
+        /*return servicioAccesoBaseDatos.findById(id)
                 .map(IUsuarioEntity::getRol) // Obtiene el rol del usuario si existe
-                .orElse(null);       // Retorna null si el usuario no está en la lista
+                .orElse(null);       // Retorna null si el usuario no está en la lista/* */
     }
     @Override
     public List<String> obtenerPermisosDeUsuario(Integer id) {
+        return null;
         // Buscar el usuario en el repositorio por su ID
-        IUsuarioEntity usuarioBase = servicioAccesoBaseDatos.findById(id)
+        /*IUsuarioEntity usuarioBase = servicioAccesoBaseDatos.findById(id)
             .map(usuario -> new UsuarioBaseImpl(
                     usuario.getId(),
                     usuario.getNombre(),
@@ -149,7 +151,7 @@ public class UsuarioServiceImpl implements IUsuarioService {
             default -> usuarioBase; // Usuario básico sin decoradores adicionales
         };
 
-        return usuarioDecorado.getPermisos();
+        return usuarioDecorado.getPermisos();*/
     }
 
     @Override
@@ -157,5 +159,24 @@ public class UsuarioServiceImpl implements IUsuarioService {
         List<String> permisos = usuario.getPermisos();
         return permisos.contains(accion); // Valida si tiene el permiso específico
     }
+    @Override
+    public IUsuarioEntity decorarUsuario(IUsuarioEntity usuario) {
+        // Obtener el rol del usuario
+        String rol = usuario.getRol();
+
+        // Decorar el usuario según el rol
+        switch (rol) {
+            case "AUTOR":
+                return new AutorDecorator(usuario);
+            case "ORGANIZADOR":
+                return new OrganizadorDecorator(usuario);
+            case "EVALUADOR":
+                return new EvaluadorDecorator(usuario);
+            // Añadir más casos según los roles que necesites
+            default:
+                return usuario; // Usuario sin decoración, si no coincide con ningún rol
+        }
+    }
+    
     
 }

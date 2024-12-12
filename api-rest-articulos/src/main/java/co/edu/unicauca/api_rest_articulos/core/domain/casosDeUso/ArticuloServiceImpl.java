@@ -9,6 +9,7 @@ import co.edu.unicauca.api_rest_articulos.core.aplication.input.IArticuloService
 import co.edu.unicauca.api_rest_articulos.core.aplication.output.ArticuloFormateador;
 import co.edu.unicauca.api_rest_articulos.core.aplication.output.GestionarArticulo;
 import co.edu.unicauca.api_rest_articulos.core.domain.modelos.Articulo;
+import co.edu.unicauca.api_rest_articulos.core.infrastructure.input.DTO.ArticuloDTO;
 import co.edu.unicauca.api_rest_articulos.core.infrastructure.output.services.UsuarioService;
 
 @Service
@@ -46,18 +47,6 @@ public class ArticuloServiceImpl implements IArticuloService {
         return objGestionarArticulo.exist(id);
     }
 
-    @Override
-    public Articulo save(Articulo articulo, Integer idUsuario) {
-        if (!objUsuarioService.validarPermisoCrearArticulo(idUsuario)) {
-            throw new RuntimeException("El usuario no tiene permisos para subir artículos");
-        }
-
-        Articulo guardado = objGestionarArticulo.save(articulo, idUsuario);
-        if (guardado == null) {
-            return objArticuloFormateador.prepararRespuestaFallida("Error al guardar el artículo");
-        }
-        return guardado;
-    }
 
     @Override
     public Articulo update(Integer id, Articulo articulo) {
@@ -71,5 +60,19 @@ public class ArticuloServiceImpl implements IArticuloService {
     @Override
     public boolean delete(Integer id) {
         return objGestionarArticulo.delete(id);
+    }
+
+    @Override
+    public Articulo save(Articulo articulo, String token) {
+        if (!objUsuarioService.validarPermisoCrearArticulo(token)) {
+            throw new RuntimeException("El usuario no tiene permisos para subir artículos");
+        }
+
+        Articulo guardado = objGestionarArticulo.save(articulo);
+        if (guardado == null) {
+            return objArticuloFormateador.prepararRespuestaFallida("token");
+        }
+        return guardado;
+    
     }
 }

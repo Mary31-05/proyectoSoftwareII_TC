@@ -5,26 +5,29 @@ import java.util.List;
 
 public class UsuarioBaseImpl implements IUsuarioEntity {
 
-    private Integer id;
+    private String id;
     private String nombre;
-    private String apellido;
+    private String user;
     private String correo;
-    private String password;
     private String rol;
 
-    public UsuarioBaseImpl(Integer id,String nombre,String apellido,String correo, String password,String rol) {
+    public UsuarioBaseImpl(){
+
+    }
+
+    public UsuarioBaseImpl(String id, String nombre,String user,String correo,String rol) {
         this.id = id;
         this.nombre = nombre;
-        this.apellido = apellido;
+        this.user = user;
         this.correo = correo;
-        this.password = password;
         this.rol = rol;
     }
 
     @Override
-    public Integer getId() {
-       return id;
+    public String getId() {
+        return id;
     }
+
 
     @Override
     public String getNombre() {
@@ -32,18 +35,13 @@ public class UsuarioBaseImpl implements IUsuarioEntity {
     }
 
     @Override
-    public String getApellido() {
-        return apellido;
+    public String getUser() {
+        return user;
     }
 
     @Override
     public String getCorreo() {
         return correo;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
     }
 
     @Override
@@ -55,5 +53,6 @@ public class UsuarioBaseImpl implements IUsuarioEntity {
     public List<String> getPermisos() {
         return new ArrayList<>();
     }
+
     
 }
