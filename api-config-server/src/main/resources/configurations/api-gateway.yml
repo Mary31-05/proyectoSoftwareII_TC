@@ -8,7 +8,7 @@ spring:
             - Path=/api/usuarios/**
 
         - id: api-rest-conferencias
-          uri: lb://API-REST-CONFERENCIAS
+          uri: api-rest-conferencias:8070
           predicates:
             - Path=/api/conferencias/**
 

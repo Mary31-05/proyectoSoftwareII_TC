@@ -1,0 +1,11 @@
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\aplication\DTO\ConferenciaDTO.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\aplication\DTO\RolDTO.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\aplication\DTO\UsuarioDTO.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\aplication\services\IConferenciaService.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\aplication\services\UsuariosService.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\CoreApplication.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\domain\models\ConferenciaEntity.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\domain\repositories\ConferenciaRepository.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\infraestructure\mapper\mapper.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\infraestructure\persistence\ConferenciaServiceImpl.java
+C:\Users\izi\Desktop\VSCODE\3corte\MASTER\proyectoSoftwareII_TC\api-rest-conferencias\src\main\java\co\edu\unicauca\apiconferencias\core\interfaces\ConferenciaRestController.java
