@@ -3,6 +3,12 @@
 Este proyecto contiene un conjunto de microservicios desplegados mediante Docker Compose. A continuación, se presentan las instrucciones para clonar el repositorio, construir las imágenes y ejecutar los servicios.
 
 ---
+
+## Documentación y protocolo de sustentación
+
+- **Video del protocolo de sustentación**: [Video en YouTube](<URL_VIDEO>)
+
+---
 ## Estructura del proyecto
 
 Este proyecto cuenta con dos ramas:
@@ -105,12 +111,6 @@ Una vez que los servicios estén en ejecución, estarán disponibles en las sigu
 - **API Rest Usuario**: [http://localhost:8050](http://localhost:8050)
 - **API Rest Conferencias**: [http://localhost:8070](http://localhost:8070)
 - **API Rest Artículos**: [http://localhost:8060](http://localhost:8060)
-
----
-
-## Documentación y protocolo de sustentación
-
-- **Video del protocolo de sustentación**: [Video en YouTube](<URL_VIDEO>)
 
 ---
 
