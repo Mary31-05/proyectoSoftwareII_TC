@@ -13,6 +13,13 @@ Asegúrate de tener las siguientes herramientas instaladas en tu máquina:
 
 ---
 
+## Documentación y protocolo de sustentación
+
+- **Documentación del proyecto**: [Documentación en PDF](https://docs.google.com/document/d/10-IaxTAloIKLhTPku-zjhZLPSVDNExfqZgOOzyGPHT8/edit?tab=t.0)
+- **Video del protocolo de sustentación**: [Video en YouTube](<URL_VIDEO>)
+
+---
+
 ## Pasos para la ejecución
 
 ### 1. Clonar el repositorio
