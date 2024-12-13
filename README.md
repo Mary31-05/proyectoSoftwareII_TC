@@ -56,7 +56,7 @@ git checkout test
 
 #### 2. Ejecutar los servicios manualmente
 
-Sigue el orden especificado para iniciar cada servicio desde la consola:
+Sigue el orden especificado para iniciar cada servicio desde la consola (desde la caperta raiz):
 
 1. **Iniciar Keycloak**:
    ```bash
@@ -71,31 +71,31 @@ Sigue el orden especificado para iniciar cada servicio desde la consola:
 
 3. **Ejecutar `api-discovery`**:
    ```bash
-   cd ../api-discovery
+   cd api-discovery
    mvn spring-boot:run
    ```
 
 4. **Ejecutar `api-rest-usuario`**:
    ```bash
-   cd ../api-rest-usuario
+   cd api-rest-usuario
    mvn spring-boot:run
    ```
 
 5. **Ejecutar `api-rest-conferencias`**:
    ```bash
-   cd ../api-rest-conferencias
+   cd api-rest-conferencias
    mvn spring-boot:run
    ```
 
 6. **Ejecutar `api-rest-articulos`**:
    ```bash
-   cd ../api-rest-articulos
+   cd api-rest-articulos
    mvn spring-boot:run
    ```
 
 7. **Ejecutar `api-gateway`**:
    ```bash
-   cd ../api-gateway
+   cd api-gateway
    mvn spring-boot:run
    ```
 
