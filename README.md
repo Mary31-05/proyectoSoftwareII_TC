@@ -6,7 +6,7 @@ Este proyecto contiene un conjunto de microservicios desplegados mediante Docker
 
 ## Documentación y protocolo de sustentación
 
-- **Video del protocolo de sustentación**: [Video en YouTube](<[URL_VIDEO](https://youtu.be/zLDQVK1cJbw)>)
+- **Video del protocolo de sustentación**: [Video en YouTube](<https://youtu.be/zLDQVK1cJbw>)
 
 ---
 ## Estructura del proyecto
