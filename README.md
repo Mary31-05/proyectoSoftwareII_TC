@@ -1,4 +1,4 @@
-# Proyecto con Docker Compose
+# Proyecto Gestión de Conferencias Académicas
 
 Este proyecto contiene un conjunto de microservicios desplegados mediante Docker Compose. A continuación, se presentan las instrucciones para clonar el repositorio, construir las imágenes y ejecutar los servicios.
 
