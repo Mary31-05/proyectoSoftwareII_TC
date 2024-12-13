@@ -107,7 +107,6 @@ Una vez que los servicios estén en ejecución, estarán disponibles en las sigu
 
 - **API Config Server**: [http://localhost:8888](http://localhost:8888)
 - **API Discovery**: [http://localhost:8761](http://localhost:8761)
-- **API Gateway**: [http://localhost:8222](http://localhost:8222)
 - **API Rest Usuario**: [http://localhost:8050](http://localhost:8050)
 - **API Rest Conferencias**: [http://localhost:8070](http://localhost:8070)
 - **API Rest Artículos**: [http://localhost:8060](http://localhost:8060)
