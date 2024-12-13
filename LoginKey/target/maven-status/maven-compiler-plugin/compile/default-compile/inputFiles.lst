@@ -1,21 +1,29 @@
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\key\ApiController.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\key\KeycloakAuth.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\key\SecurityConfig.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\modelos\Articulo.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\modelos\Conferencia.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\modelos\User.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\modelos\Usuario.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\services\ArticuloServices.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\services\ConferenciaServices.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\services\KeycloakServices.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\services\UsuarioServices.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\test\LoginApp.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\utilidades\Authenticator.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\utilidades\CargarImagenes.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\utilidades\Utilidades.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\vistas\articulo\Render.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\vistas\articulo\VtnListarArticulos.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\vistas\articulo\VtnRegistrarArticulo.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\vistas\conferencia\VtnListarConferencias.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\edu\unicauca\vistas\principal\VtnPrincipalAdmin.java
-C:\Users\izi\Documents\NetBeansProjects\LoginKey\src\main\java\co\unicauca\login\VtnLoginn.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\infraestructura\Observer.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\infraestructura\Subject.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\key\ApiController.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\key\KeycloakAuth.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\key\SecurityConfig.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\modelos\Articulo.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\modelos\Conferencia.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\modelos\User.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\modelos\Usuario.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\services\ArticuloServices.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\services\ConferenciaServices.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\services\KeycloakServices.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\services\UsuarioServices.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\test\LoginApp.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\utilidades\Authenticator.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\utilidades\CargarImagenes.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\utilidades\Utilidades.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\articulo\Render.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\articulo\VtnListarArticulos.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\articulo\VtnRegistrarArticulo.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\autor\VtnListarAutor.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\conferencia\VtnListarConferencias.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\conferencia\VtnRegistrarConferencia.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\evaluador\RenderE.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\evaluador\VtnListarEvaluador.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\organizador\VtnListarOrganizadores.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\edu\unicauca\vistas\principal\VtnPrincipalAdmin.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\unicauca\login\VtnLoginn.java
+C:\Users\izi\Desktop\VSCODE\3corte\Nueva carpeta\proyectoSoftwareII_TC\LoginKey\src\main\java\co\unicauca\login\VtnRegistro.java

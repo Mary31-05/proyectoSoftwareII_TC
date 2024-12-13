@@ -14,6 +14,7 @@ import co.edu.unicauca.services.KeycloakServices;
 import co.edu.unicauca.services.UsuarioServices;
 import co.edu.unicauca.utilidades.Utilidades;
 import co.unicauca.login.VtnLoginn;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -52,6 +53,13 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
             ConferenciaServices objServicio2,
             UsuarioServices objSUsuario,
             VtnListarArticulos objListarArticulo) {
+        setLocation(450, 150);
+        try {
+            FlatMacDarkLaf.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        initComponents();
         initComponents();
         this.objSArticulo = objServicio1;
         this.objSConferencia = objServicio2;

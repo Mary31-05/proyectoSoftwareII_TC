@@ -18,7 +18,7 @@ public class VtnLoginn extends javax.swing.JFrame {
     private VtnPrincipalAdmin objVtnPrincipal;
 
     private UsuarioServices usuarioService = new UsuarioServices();
-    
+
     private VtnRegistro objVtnRegistro = new VtnRegistro();
 
     /**
@@ -32,7 +32,7 @@ public class VtnLoginn extends javax.swing.JFrame {
             System.err.println("Failed to initialize LaF");
         }
         initComponents();
-        
+
     }
 
     /**
@@ -69,6 +69,11 @@ public class VtnLoginn extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
+        btnIngresar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnIngresarKeyPressed(evt);
+            }
+        });
 
         lblUsuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -99,13 +104,8 @@ public class VtnLoginn extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(160, 160, 160)
+                .addComponent(lblUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(110, Short.MAX_VALUE)
@@ -120,7 +120,9 @@ public class VtnLoginn extends javax.swing.JFrame {
                             .addComponent(jPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(104, 104, 104))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblPregunta, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(119, 119, 119))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -151,9 +153,9 @@ public class VtnLoginn extends javax.swing.JFrame {
                 .addComponent(lblPregunta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(BtnRegistro)
-                .addGap(41, 41, 41)
+                .addGap(33, 33, 33)
                 .addComponent(lblResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18))
         );
 
         lblResultado.getAccessibleContext().setAccessibleName("lblResultado");
@@ -184,7 +186,7 @@ public class VtnLoginn extends javax.swing.JFrame {
             Usuario usuario = usuarioService.obtenerUsuarioDesdeToken(token);
             String rol = usuario.getRol();
             objVtnPrincipal = new VtnPrincipalAdmin();
-            
+
             objVtnPrincipal.gestionRol(rol);
             objVtnPrincipal.setVisible(true); // Abre la ventana principal
             this.txtUser.setText(null);
@@ -201,6 +203,14 @@ public class VtnLoginn extends javax.swing.JFrame {
         this.objVtnRegistro.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BtnRegistroActionPerformed
+
+    private void btnIngresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            // Lógica que deseas ejecutar cuando se presiona Enter
+            System.out.println("¡Botón activado con Enter!");
+            btnIngresar.doClick(); // Esto simula un clic en el botón
+        }
+    }//GEN-LAST:event_btnIngresarKeyPressed
 
     /**
      * @param args the command line arguments

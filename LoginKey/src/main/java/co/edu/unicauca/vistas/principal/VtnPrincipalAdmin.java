@@ -36,6 +36,8 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
     private ArticuloServices objSArticulo;
     private UsuarioServices objSUsuario;
     
+    private VtnPrincipalAsistente objVtnAsistente;
+    
     // Rol del usuario actual
     private String rol;
      /**
@@ -99,6 +101,7 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
         this.objSConferencia = objSConferencia;
         this.objSArticulo = objSArticulo;
         this.objSUsuario = objSUsuario;
+        
         relacionarInternalFrameConJdesptokPane();
     }
     
@@ -123,6 +126,11 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
 
         this.objVtnListarAutores = new VtnListarAutor();
                 this.jDesktopPanelPrincipal.add(this.objVtnListarAutores);
+                
+        this.objVtnAsistente =new VtnPrincipalAsistente();
+                //this.jDesktopPanelPrincipal.add(this.objVtnAsistente);
+           
+        this.objSArticulo.addObserver(objVtnAsistente);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -1,5 +1,7 @@
 package co.edu.unicauca.services;
 
+
+import co.edu.unicauca.infraestructura.Subject;
 import java.util.List;
 import co.edu.unicauca.modelos.Conferencia;
 import com.nimbusds.jose.shaded.gson.Gson;
@@ -16,7 +18,7 @@ import java.nio.charset.StandardCharsets;
  * Clase de servicio que proporciona métodos para gestionar conferencias
  * utilizando un repositorio de conferencias.
  */
-public class ConferenciaServices {
+public class ConferenciaServices extends Subject{
 
     private static final String BACKEND_URL = "http://localhost:8222/api/conferencias";
 
@@ -174,6 +176,7 @@ public class ConferenciaServices {
         int responseCode = connection.getResponseCode();
         if (responseCode == 201 || responseCode == 200) { // Si la respuesta indica éxito
             System.out.println("Conferencia guardada exitosamente.");
+            
             return true;
         } else {
             throw new RuntimeException("Error al guardar la conferencia: Código de respuesta " + responseCode);

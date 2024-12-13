@@ -1,5 +1,7 @@
 package co.edu.unicauca.services;
 
+
+import co.edu.unicauca.infraestructura.Subject;
 import co.edu.unicauca.modelos.Articulo;
 import com.nimbusds.jose.shaded.gson.Gson;
 import com.nimbusds.jose.shaded.gson.reflect.TypeToken;
@@ -14,7 +16,7 @@ import java.util.List;
  * Clase de servicio que proporciona métodos para gestionar artículos utilizando
  * un repositorio de artículos.
  */
-public class ArticuloServices {
+public class ArticuloServices extends Subject{
 
     private static final String BACKEND_URL = "http://localhost:8222/api/articulos";
 
@@ -42,7 +44,10 @@ public class ArticuloServices {
 
             // Verificar la respuesta del servidor
             int responseCode = connection.getResponseCode();
+            this.notifyAllObserves();
             return responseCode == 200; // Retorna true si el código de respuesta es 201 (Created)
+            
+            
 
         } catch (Exception e) {
             // Manejo de errores

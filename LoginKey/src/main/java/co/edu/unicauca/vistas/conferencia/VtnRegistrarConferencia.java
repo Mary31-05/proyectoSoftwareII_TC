@@ -4,6 +4,7 @@ import co.edu.unicauca.modelos.Conferencia;
 import co.edu.unicauca.modelos.User;
 import co.edu.unicauca.services.ConferenciaServices;
 import co.edu.unicauca.utilidades.Utilidades;
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,6 +40,13 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
      */
     public VtnRegistrarConferencia(ConferenciaServices objServicioAlmacenamiento,
             VtnListarConferencias vtnListarConferencias) {
+        setLocation(450, 150);
+        try {
+            FlatMacDarkLaf.setup();
+        } catch (Exception ex) {
+            System.err.println("Failed to initialize LaF");
+        }
+        initComponents();
         initComponents();
         this.objServicioAlmacenamiento = objServicioAlmacenamiento;
         this.objVtnListarConferencias = vtnListarConferencias;
