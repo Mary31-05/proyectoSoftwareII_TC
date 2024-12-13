@@ -11,12 +11,12 @@ import javax.swing.Timer;
  *
  * @author HSVSTT2
  */
-public class VtnPrincipalAsistente extends javax.swing.JFrame implements Observer {
+public class VtnNotify extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form VtnPrincipalAdmin
      */
-    public VtnPrincipalAsistente() {
+    public VtnNotify() {
 
         setLocation(450, 150);
         try {

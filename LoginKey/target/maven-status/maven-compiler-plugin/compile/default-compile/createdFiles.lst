@@ -34,6 +34,7 @@ co\edu\unicauca\key\KeycloakAuth.class
 co\unicauca\login\VtnLoginn.class
 co\edu\unicauca\vistas\principal\VtnPrincipalAdmin$4.class
 co\edu\unicauca\vistas\principal\VtnPrincipalAdmin$1.class
+co\edu\unicauca\vistas\principal\VtnNotify.class
 co\edu\unicauca\vistas\conferencia\VtnListarConferencias$2.class
 co\edu\unicauca\services\ConferenciaServices.class
 co\edu\unicauca\vistas\articulo\VtnListarArticulos$1.class

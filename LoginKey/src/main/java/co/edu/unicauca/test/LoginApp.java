@@ -6,7 +6,7 @@ package co.edu.unicauca.test;
 
 import co.edu.unicauca.services.ArticuloServices;
 import co.edu.unicauca.services.ConferenciaServices;
-import co.edu.unicauca.vistas.principal.VtnPrincipalAsistente;
+import co.edu.unicauca.vistas.principal.VtnNotify;
 import co.unicauca.login.VtnLoginn;
 
 public class LoginApp {

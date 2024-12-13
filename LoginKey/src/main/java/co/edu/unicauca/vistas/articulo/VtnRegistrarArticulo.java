@@ -60,7 +60,6 @@ public final class VtnRegistrarArticulo extends javax.swing.JFrame {
             System.err.println("Failed to initialize LaF");
         }
         initComponents();
-        initComponents();
         this.objSArticulo = objServicio1;
         this.objSConferencia = objServicio2;
         this.objSUsuario = objSUsuario;

@@ -176,7 +176,7 @@ public class ConferenciaServices extends Subject{
         int responseCode = connection.getResponseCode();
         if (responseCode == 201 || responseCode == 200) { // Si la respuesta indica éxito
             System.out.println("Conferencia guardada exitosamente.");
-            
+            this.notifyAllObserves();
             return true;
         } else {
             throw new RuntimeException("Error al guardar la conferencia: Código de respuesta " + responseCode);

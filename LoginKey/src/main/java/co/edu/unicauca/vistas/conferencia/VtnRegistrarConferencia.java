@@ -47,7 +47,6 @@ public class VtnRegistrarConferencia extends javax.swing.JFrame {
             System.err.println("Failed to initialize LaF");
         }
         initComponents();
-        initComponents();
         this.objServicioAlmacenamiento = objServicioAlmacenamiento;
         this.objVtnListarConferencias = vtnListarConferencias;
 

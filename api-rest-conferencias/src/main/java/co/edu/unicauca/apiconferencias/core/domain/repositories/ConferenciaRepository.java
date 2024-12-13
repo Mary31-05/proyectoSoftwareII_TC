@@ -6,7 +6,6 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Repository;
 
-import co.edu.unicauca.apiconferencias.core.aplication.DTO.ConferenciaDTO;
 import co.edu.unicauca.apiconferencias.core.domain.models.ConferenciaEntity;
 
 @Repository

@@ -36,7 +36,8 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
     private ArticuloServices objSArticulo;
     private UsuarioServices objSUsuario;
     
-    private VtnPrincipalAsistente objVtnAsistente;
+    private VtnNotify objVtnConferencia;
+    private VtnNotify objVtnArticulo;
     
     // Rol del usuario actual
     private String rol;
@@ -127,10 +128,16 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
         this.objVtnListarAutores = new VtnListarAutor();
                 this.jDesktopPanelPrincipal.add(this.objVtnListarAutores);
                 
-        this.objVtnAsistente =new VtnPrincipalAsistente();
+        this.objVtnConferencia =new VtnNotify();
                 //this.jDesktopPanelPrincipal.add(this.objVtnAsistente);
            
-        this.objSArticulo.addObserver(objVtnAsistente);
+        this.objSConferencia.addObserver(objVtnConferencia);
+        
+        this.objVtnArticulo =new VtnNotify();
+                //this.jDesktopPanelPrincipal.add(this.objVtnAsistente);
+           
+        this.objSArticulo.addObserver(objVtnArticulo);
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -308,8 +315,8 @@ public class VtnPrincipalAdmin extends javax.swing.JFrame {
     private void jButtonVerArticulosEnviadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVerArticulosEnviadosActionPerformed
         // Configurar la ventana para ocultarse al cerrarse
         this.objVtnListarArticulos.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
-        objVtnListarArticulos.initialize();
-        objVtnListarArticulos.gestionRol(rol);
+        this.objVtnListarArticulos.initialize();
+        this.objVtnListarArticulos.gestionRol(rol);
         this.objVtnListarArticulos.setVisible(true);
         this.objVtnListarConferencias.setVisible(false);
         this.objVtnListarEvaluador.setVisible(false);
