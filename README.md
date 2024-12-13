@@ -28,7 +28,7 @@ Clona este repositorio en tu máquina local:
 
 ```bash
 git clone https://github.com/Mary31-05/proyectoSoftwareII_TC.git
-cd proyectoSoftwareII_TC.git
+cd proyectoSoftwareII_TC
 git checkout main
 ```
 
