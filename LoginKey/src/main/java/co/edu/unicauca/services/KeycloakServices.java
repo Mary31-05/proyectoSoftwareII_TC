@@ -150,7 +150,7 @@ public class KeycloakServices {
 
                 keycloak.realm(REALM).users().get(userId).resetPassword(passwordCred);
 
-                JOptionPane.showMessageDialog(null, "Usuario creado correctamente con el rol: " + rol +"\n       Inicie sesion", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Usuario creado correctamente con el rol: " + rol + "\n       Inicie sesion", "Success", JOptionPane.INFORMATION_MESSAGE);
                 this.registro = true;
             } else {
                 JOptionPane.showMessageDialog(null, "Error creando el usuario: " + response.getStatusInfo().getReasonPhrase(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -159,6 +159,46 @@ public class KeycloakServices {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error creando el usuario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
+        }
+    }
+
+    public boolean deleteUser(String username) {
+        try {
+            // Inicializar conexión con Keycloak
+            Keycloak keycloak = KeycloakBuilder.builder()
+                    .serverUrl(SERVER_URL)
+                    .realm(REALM)
+                    .grantType("client_credentials")
+                    .clientId(CLIENT_ID)
+                    .clientSecret(CLIENT_SECRET)
+                    .build();
+
+            // Obtener lista de usuarios con el nombre de usuario especificado
+            List<UserRepresentation> users = keycloak.realm(REALM).users().search(username, null, null, null, null, null);
+
+            if (users.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Usuario no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            // Asumimos que el nombre de usuario es único y tomamos el primero
+            String userId = users.get(0).getId();
+
+            // Enviar solicitud para eliminar el usuario
+            jakarta.ws.rs.core.Response response = keycloak.realm(REALM).users().delete(userId);
+
+            if (response.getStatus() == 204) { // 204 No Content indica éxito
+                response.close();
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Error eliminando el usuario: " + response.getStatusInfo().getReasonPhrase(), "Error", JOptionPane.ERROR_MESSAGE);
+                response.close();
+                return false;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error eliminando el usuario: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+            return false;
         }
     }
 

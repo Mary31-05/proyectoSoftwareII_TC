@@ -3,11 +3,11 @@ package co.edu.unicauca.vistas.evaluador;
 import co.edu.unicauca.modelos.Usuario;
 import co.edu.unicauca.services.ArticuloServices;
 import co.edu.unicauca.services.KeycloakServices;
+import co.edu.unicauca.utilidades.Utilidades;
 import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -23,7 +23,7 @@ public class VtnListarEvaluador extends javax.swing.JInternalFrame {
 
     // Atributos para los servicios utilizados en la clase
     public ArticuloServices objSArticulo; // Servicio para gestionar artículos.
-   
+
     private KeycloakServices keyServices;
     //public EvaluadorServicio objSEvaluador; // Servicio para gestionar evaluadores.
     //private OrganizadorServicio organizadorServicio;
@@ -40,8 +40,8 @@ public class VtnListarEvaluador extends javax.swing.JInternalFrame {
      */
     public VtnListarEvaluador(
             ArticuloServices objSArticulo
-            //EvaluadorServicio objSEvaluador,
-            //OrganizadorServicio organizadorServicio
+    //EvaluadorServicio objSEvaluador,
+    //OrganizadorServicio organizadorServicio
     ) {
         // Inicializa los componentes de la ventana.
         initComponents();
@@ -66,6 +66,7 @@ public class VtnListarEvaluador extends javax.swing.JInternalFrame {
         model.addColumn("ID");
         model.addColumn("NOMBRE");
         model.addColumn("CORREO");
+        model.addColumn("USERNAME");
         model.addColumn("ELIMINAR");
         model.addColumn("ACTUALIZAR");
         this.jTableListarEvaluadores.setModel(model);
@@ -125,6 +126,7 @@ public class VtnListarEvaluador extends javax.swing.JInternalFrame {
                     evaluador.getId(), // ID del evaluador
                     evaluador.getNombre(), // Nombre del evaluador
                     evaluador.getCorreo(), // Correo del evaluador
+                    evaluador.getUser(),
                     JButtonEliminarEvaluador, // Botón de eliminar
                     JButtonActualizarEvaluador // Botón de actualizar
                 };
@@ -275,45 +277,42 @@ public class VtnListarEvaluador extends javax.swing.JInternalFrame {
      */
 
     private void jTableListarEvaluadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListarEvaluadoresMouseClicked
-//        int column = this.jTableListarEvaluadores.getColumnModel().getColumnIndexAtX(evt.getX());
-//        int row = evt.getY() / jTableListarEvaluadores.getRowHeight();
-//
-//        if (row < jTableListarEvaluadores.getRowCount() && row >= 0 && column < jTableListarEvaluadores.getColumnCount() && column >= 0) {
-//            Object value = jTableListarEvaluadores.getValueAt(row, column);
-//
-//            if (value instanceof JButton) {
-//
-//                ((JButton) value).doClick();
-//                JButton boton = (JButton) value;
-//
-//                String idEvaluador = jTableListarEvaluadores.getValueAt(row, 0).toString();
-//                int idEvaluadorConvertido = Integer.parseInt(idEvaluador);
-//                if (boton.getName().equals("Eliminar")) {
-//                    try {
-//                        if (Utilidades.mensajeConfirmacion("¿Estás seguro de que quieres eliminar el evaluador con identificador " + idEvaluador + "?", "Confirmación") == 0) {
-//                            boolean bandera = this.objSEvaluador.eliminarEvaluador(idEvaluadorConvertido);
-//                            if (bandera) {
-//                                Utilidades.mensajeExito("El evaluador con identificador " + idEvaluadorConvertido + " fue eliminado exitosamente", "Evaluador eliminado");
-//                                llenarTabla();
-//                            } else {
-//                                System.out.println("Error: La eliminación falló en el servidor o el evaluador no existe.");
-//                                Utilidades.mensajeAdvertencia("El evaluador con identificador " + idEvaluadorConvertido + " no fue eliminado", "Error al eliminar");
-//                            }
-//                        }
-//                    } catch (Exception ex) {
-//                        System.out.println("Excepción al intentar eliminar: " + ex.getMessage());
-//                        Utilidades.mensajeError("Error al eliminar usuario. Inténtelo de nuevo más tarde", "Error");
-//                    }
-//                } else if (boton.getName().equals("Actualizar")) {
-//                    VtnActualizarEvaluador objVtnActualizarEvaluador
-//                            = new VtnActualizarEvaluador(objSArticulo, objSEvaluador);
-//                    objVtnActualizarEvaluador.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//                    objVtnActualizarEvaluador.cargarDatos(idEvaluadorConvertido);
-//                    objVtnActualizarEvaluador.setVisible(true);
-//
-//                }
-//            }
-//        }
+        this.keyServices = new KeycloakServices();
+
+        int column = this.jTableListarEvaluadores.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row = evt.getY() / jTableListarEvaluadores.getRowHeight();
+
+        if (row < jTableListarEvaluadores.getRowCount() && row >= 0 && column < jTableListarEvaluadores.getColumnCount() && column >= 0) {
+            Object value = jTableListarEvaluadores.getValueAt(row, column);
+
+            if (value instanceof JButton) {
+
+                ((JButton) value).doClick();
+                JButton boton = (JButton) value;
+
+                String userEvaluador = jTableListarEvaluadores.getValueAt(row, 3).toString();
+                System.out.println("idddd "+userEvaluador);
+                if (boton.getName().equals("Eliminar")) {
+                    try {
+                        if (Utilidades.mensajeConfirmacion("¿Estás seguro de que quieres eliminar el evaluador con identificador " + userEvaluador + "?", "Confirmación") == 0) {
+                            boolean bandera = this.keyServices.deleteUser(userEvaluador);//this.objSEvaluador.eliminarEvaluador(idEvaluadorConvertido);
+                            if (bandera) {
+                                Utilidades.mensajeExito("El evaluador con identificador " + userEvaluador + " fue eliminado exitosamente", "Evaluador eliminado");
+                                llenarTabla();
+                            } else {
+                                System.out.println("Error: La eliminación falló en el servidor o el evaluador no existe.");
+                                Utilidades.mensajeAdvertencia("El evaluador con identificador " + userEvaluador + " no fue eliminado", "Error al eliminar");
+                            }
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Excepción al intentar eliminar: " + ex.getMessage());
+                        Utilidades.mensajeError("Error al eliminar usuario. Inténtelo de nuevo más tarde", "Error");
+                    }
+                } else if (boton.getName().equals("Actualizar")) {
+
+                }
+            }
+        }
     }//GEN-LAST:event_jTableListarEvaluadoresMouseClicked
 
 

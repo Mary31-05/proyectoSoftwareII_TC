@@ -69,11 +69,6 @@ public class VtnLoginn extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        btnIngresar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                btnIngresarKeyPressed(evt);
-            }
-        });
 
         lblUsuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -203,14 +198,6 @@ public class VtnLoginn extends javax.swing.JFrame {
         this.objVtnRegistro.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BtnRegistroActionPerformed
-
-    private void btnIngresarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnIngresarKeyPressed
-        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-            // Lógica que deseas ejecutar cuando se presiona Enter
-            System.out.println("¡Botón activado con Enter!");
-            btnIngresar.doClick(); // Esto simula un clic en el botón
-        }
-    }//GEN-LAST:event_btnIngresarKeyPressed
 
     /**
      * @param args the command line arguments
